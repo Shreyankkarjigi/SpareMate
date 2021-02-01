@@ -1,0 +1,175 @@
+{% extends "layout.html"%}
+{% block content %}
+<title>Homepage</title>
+<head>
+<meta content="width=device-width, initial-scale=1" name="viewport" />
+<!-- CSS only -->
+
+</head>
+<body>
+<style>
+
+
+.card col-md-4{
+    width:80%
+    border-radius:30px;
+}
+
+
+.heading{
+    font-size:80px;
+    margin-top:100px;
+    font-family:roboto;
+    text-decoration:underline;
+}
+.sub-heading{
+    font-size:30px;
+     font-family:roboto;
+    
+}
+.sub-heading1{
+    font-family:roboto;
+}
+dth:767px){
+    .heading{
+    font-size:50px;
+     font-family:roboto;
+    }
+    .welcome-user{
+        font-size:15px;
+         font-family:roboto;
+    }
+
+    .sub-heading{
+    font-size:15px;
+     font-family:roboto;
+
+
+}
+
+
+
+}
+
+.prod-hyperlink{
+    text-decoration:none;
+     font-family:roboto;
+}
+.welcome{
+    margin-top:10px;
+}
+.welcome-user{
+    text-decoration:none;
+    color:black;
+    padding:10px;
+    padding-right:10px;
+     font-family:roboto;
+}
+
+.sub-heading1{
+    font-size:30px;
+     font-family:roboto;
+}
+.card-title{
+    font-family:roboto;
+}
+
+.container{
+    width:80%
+}
+
+.card-img-top{
+    width:99%
+    height:50%
+    
+}
+@media screen and (max-width:767px){
+
+    .card-img-top{
+    width:95%
+    
+    
+}
+.card col-md-4{
+    width:10%
+    border-radius:30px;
+}
+.container{
+    width:80%
+}
+.card-title{
+    font-family:roboto;
+}
+.heading{
+    font-size:50px;
+    margin-top:100px;
+    font-family:roboto;
+    text-decoration:underline;
+
+
+}
+.sub-heading{
+    font-size:20px;
+     font-family:roboto;
+    
+}
+.sub-heading1{
+    font-size:20px;
+     font-family:roboto;
+}
+
+}
+
+</style>
+
+<h1 align="center" class="heading">SpareMate</h1>
+<h3 align="center" class="sub-heading">" Parts that you can trust "</h3>
+
+<br>
+<br>
+<br>
+<h3 align="center" class="sub-heading1"> Shop by category </h3>
+<br>
+<br>
+<div class="container"style="border-radius:4px;"> 
+<div class="card-group"style="border-radius:4px;"> 
+<!--bootstrap card with 3 horizontal images-->            
+<div class="row" style="border-radius:10px;"> 
+ 
+<div class="card col-md-4" style="background-color:white;"> 
+ 
+<img class="card-img-top" src= 
+"{{url_for('static', filename='prod.png')}}" style="height:50%; padding-top:2px;"> 
+
+<a href=""class="prod-hyperlink">  
+
+<div class="card-body"> 
+<h3 class="card-title"><font color="black">Car</h3></font>
+ <p class="card-text"><font color="black">Browse parts for your car</p> </font></a>               
+ </div> 
+</div> 
+<div class="card col-md-4"style="background-color:white;"> 
+<img class="card-img-top" src= 
+"{{url_for('static', filename='bike.png')}}"style="height:50.5%; padding-top:3px;"> 
+<a href=""class="prod-hyperlink">                    
+<div class="card-body"> 
+<h3 class="card-title text-primary"><font color="black">Bike</h3></font> 
+<p class="card-text"><font color="black">Browse parts for your bike</p></font></a>
+</div> 
+</div>                
+<div class="card col-md-4"style="background-color:white;"> 
+<img class="card-img-top" src= 
+"{{url_for('static', filename='deal.png')}}"style="height:50%">
+<a href=""class="prod-hyperlink"> 
+<div class="card-body"> 
+<h3 class="card-title"><font color="black">Book a service</h3></font>
+<p class="card-text"><font color="black">Book our experienced mechanics now</p></font></a>
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+
+{%endblock %}
+</body>
+</html>

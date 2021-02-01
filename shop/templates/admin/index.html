@@ -1,0 +1,237 @@
+<title>SpareMate</title>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- keeping all scripts and style local for faster load times-->
+    <!--bootstrap-->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+    <!--scripts-->
+    <script src="{{url_for('static', filename='js/a076d05399.js')}}"></script>
+    <script src="{{url_for('static', filename='js/jquery-3.5.1.js')}}"></script>
+    <script src="{{url_for('static', filename='js/popper.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/script.js')}}"></script>
+    <link rel="stylesheet" media="print" href="print.css">
+    <style>
+        .dropdown-item:hover {
+            background-color: #3D3D3D;
+            color: white;
+        }
+        
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Times New Roman', Times, serif
+        }
+        
+        a:hover {
+            background-color: #3A3B3C;
+        }
+        
+        body {
+            background: #161618;
+        }
+        
+        .container {
+            background-color: rgba(0, 0, 0, 0.5);
+            width: auto;
+        }
+        
+        .table table-sm {
+            width: 60%;
+        }
+        
+        .wrapper {
+            text-align: center;
+        }
+        
+        .button {
+            position: absolute;
+            top: 50%;
+        }
+        
+        @media print {
+            .clock {
+                display: hidden;
+            }
+            .button {
+                display: hidden;
+            }
+            .wrapper {
+                display: hidden;
+            }
+        }
+        
+        @media (max-width: 765px) {
+            .container {
+                width: auto;
+            }
+        }
+        
+        .clock {
+            text-align: right;
+            width: auto;
+            height: auto;
+            font-size: 20px;
+            color: white;
+            font-family: roboto;
+        }
+        
+        @media (max-width: 765px) {
+            .clock {
+                display: None;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="{{url_for('admin')}}">SpareMate Admin</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item ">
+                    <a class="nav-link" href="{{url_for('admin')}}">Product <span class="sr-only">(current)</span></a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Edit Database
+              </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
+                        <a class="dropdown-item" href="{{url_for('brands')}}">Edit brand</a>
+                        <a class="dropdown-item" href="{{url_for('category')}}">Edit category</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Add products
+              </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="{{url_for('addproduct')}}">Add product</a>
+                        <a class="dropdown-item" href="{{url_for('addbrand')}}">Add brand</a>
+                        <a class="dropdown-item" href="{{url_for('addcat')}}">Add category</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('login')}}">Admin Login</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('logout')}}">Logout</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="clock">
+            <h6 align="center">
+                <font color="white">Time</h6>
+            </font>
+            <span id="hr">00</span>
+            <span> : </span>
+            <span id="min">00</span>
+            <span> : </span>
+            <span id="sec">00</span>
+        </div>
+    </nav>
+    <br>
+    <br> {% block content %} {% include '_messages.html'%}
+    <div class="container">
+    </div>
+    <div class="container">
+        <h5 align="center">
+            <font size="5px">
+                <font color="white">Inventory Overview</h5>
+        </font>
+        <hr>
+        <table class="table table-sm">
+            <thead>
+                <th>
+                    <font color="white">SerialNo.</th>
+                </font>
+                <th>
+                    <font color="white">Product</th>
+                </font>
+                <th>
+                    <font color="white">Price</th>
+                </font>
+                <th>
+                    <font color="white">Discount(%)</th>
+                </font>
+                <th>
+                    <font color="white">Brand</th>
+                </font>
+                <th>
+                    <font color="white">Image</th>
+                </font>
+                <th>
+                    <font color="white">Edit</th>
+                </font>
+                <th>
+                    <font color="white">Delete</th>
+                </font>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                <tr>
+                    <td>
+                        <font color="white">{{loop.index}}</td>
+                    </font>
+                    <td>
+                        <font color="white">{{product.name}}</td>
+                    </font>
+                    <td>
+                        <font color="white">{{product.price}}</td>
+                    </font>
+                    <td>
+                        <font color="white">{{product.discount}}%</td>
+                    </font>
+                    <td>
+                        <font color="white">{{product.brand.name}}</td>
+                    </font>
+                    <td> <img src="{{url_for('static',filename='images/' + product.image_1)}}" alt="{{product.name}}" width="80" height="80"></td>
+                    <td> <a href="{{url_for('updateproduct', id=product.id)}}" class="btn btn-sm btn-dark">Edit </a> </td>
+                    <td><button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal-{{product.id}}">
+Delete</button></td>
+                </tr>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal-{{product.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">{{product.name}}</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+        </button>
+                            </div>
+                            <div class="modal-body">
+                                <p class="text-danger">Are you sure you want to delete the product {{product.name}}</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <form action="{{url_for('deleteproduct',id=product.id)}}" method="post">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {%endfor%}
+            </tbody>
+        </table>
+    </div>
+
+
+
+</body>
+
+{% endblock content %}

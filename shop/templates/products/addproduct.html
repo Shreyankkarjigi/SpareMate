@@ -1,0 +1,212 @@
+<title>SpareMate</title>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- keeping all scripts and style local for faster load times-->
+    <!--bootstrap-->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+    <!--scripts-->
+    <script src="{{url_for('static', filename='js/a076d05399.js')}}"></script>
+    <script src="{{url_for('static', filename='js/jquery-3.5.1.js')}}"></script>
+    <script src="{{url_for('static', filename='js/popper.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/script.js')}}"></script>
+    <script src="{{url_for('static', filename='js/script.js')}}"></script>
+    <style>
+        .dropdown-item:hover {
+            background-color: #3D3D3D;
+            color: white;
+        }
+        
+        .form-control {
+            color: black;
+            font-size: medium;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        
+        a:hover {
+            background-color: #3A3B3C;
+        }
+        
+        body {
+            background: #161618;
+        }
+        
+        .clock {
+            text-align: right;
+            width: auto;
+            height: auto;
+            font-size: 20px;
+        }
+        
+        @media (max-width: 765px) {
+            .container {
+                width: 100%;
+                background-color: #161618;
+            }
+        }
+        
+        .clock {
+            text-align: right;
+            width: auto;
+            height: auto;
+            font-size: 20px;
+            color: white;
+            font-family: roboto;
+        }
+        
+        @media (max-width: 765px) {
+            .clock {
+                display: None;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black">
+        <a class="navbar-brand" href="{{url_for('admin')}}">SpareMate Admin</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{url_for('admin')}}">Product <span class="sr-only">(current)</span></a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Edit Database
+              </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
+                        <a class="dropdown-item" href="{{url_for('brands')}}">Edit brand</a>
+                        <a class="dropdown-item" href="{{url_for('category')}}">Edit category</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Add products
+              </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="{{url_for('addproduct')}}">Add product</a>
+                        <a class="dropdown-item" href="{{url_for('addbrand')}}">Add brand</a>
+                        <a class="dropdown-item" href="{{url_for('addcat')}}">Add category</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('login')}}">Admin Login</a>
+                </li>
+
+
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('logout')}}">Logout</a>
+                </li>
+
+
+
+
+
+
+
+            </ul>
+        </div>
+        <div class="clock">
+            <h6 align="center">
+                <font color="white">Time</h6>
+            </font>
+            <span id="hr">00</span>
+            <span> : </span>
+            <span id="min">00</span>
+            <span> : </span>
+            <span id="sec">00</span>
+        </div>
+    </nav>
+    <br>
+    <br>
+    <div class="container">
+
+        {% block content %}
+
+        <head>
+            <style>
+
+            </style>
+            {% include '_messages.html'%}
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <br>
+                        <br>
+                        <h1 class="text-center">
+                            <font color="white">Add Product</h1>
+        </head>
+        </font>
+        <br>
+        <h5 class="text-center">
+            <font color="white">Please attach certificate of authencity for products if available</h5>
+        </font>
+        <h5 class="text-center">
+            <font color="white">Leave discount blank if not applicable</h5>
+        </font>
+        <br>
+        <br>
+        <br>
+        <h6 class="text-center">
+            <font color="white">Start typing to dismiss</h6>
+        </font>
+
+        <br> {% from "_formhelpers.html" import render_field %}
+
+        <form action="" method="POST" enctype="multipart/form-data">
+            {{render_field(form.name,class="form-control",placeholder="Product name")}} {{render_field(form.price,class="form-control",placeholder="Product price")}} {{render_field(form.discount,class="form-control",placeholder="Product discount")}} {{render_field(form.stock,class="form-control",placeholder="Discount")}}
+            {{render_field(form.origin,class="form-control",placeholder="Origin")}} {{render_field(form.colors,class="form-control",placeholder="Product color")}} {{render_field(form.description,class="form-control",placeholder="Description",rows="10")}}
+
+            <label for="brand"><font color="white">Add a brand</label></font>
+
+            <select name='brand' id="brand" class="form-control" required>
+
+<option value="">Select a brand</option>
+{% for brand in brands%}
+<option value="{{brand.id}}">{{brand.name}}</option>
+{% endfor %}
+
+</select>
+
+            <label for="category"><font color="white">Add a category</label></font>
+            <select name='category' id="category" class="form-control" required>
+
+<option value="">Add a category</option>
+{% for category in categories%}
+<option value="{{category.id}}">{{category.name}}</option>
+{% endfor %}
+</select>
+            <label for="images"><font color="white">Choose Images</label></font>
+            <div class="container-1">
+                <div class="row">
+
+                    <div class='col-md-4'>{{render_field(form.image_1,class="form-control")}}</div>
+                    <div class='col-md-4'>{{render_field(form.image_2,class="form-control")}}</div>
+                    <div class='col-md-4'>{{render_field(form.image_3,class="form-control")}}</div>
+                    <div class='col-md-4'>{{render_field(form.certificate,class="form-control")}}</div>
+                </div>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-outline-danger">Add Product</button>
+        </form>
+        </div>
+        <div class="col-md-2"></div>
+        </div>
+        </div>
+</body>
+<div class="footer-copyright text-center py-3">
+    <font family="roboto">
+        <font color="white">© 2020 Copyright:</font>
+        <a href="{{url_for('admin')}}"> SpareMate.com</a>
+</div>
+{% endblock %}
