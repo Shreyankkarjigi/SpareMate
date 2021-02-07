@@ -5,14 +5,25 @@ from .forms import Addproducts
 import secrets,os
 from sqlalchemy.sql import exists
 from sqlalchemy.exc import IntegrityError
+@app.route("/car")
+def car():
+    products=Addproduct.query.filter(Addproduct.stock>0)
+    brands= Brand.query.join(Addproduct,(Brand.id==Addproduct.brand_id)).all()
+    categories=Category.query.join(Addproduct,(Category.id==Addproduct.category_id)).all()
+    return render_template('products/car.html',products=products,brands=brands,categories=categories)
+    
+ 
+
+
+@app.route("/cat")
+def cat():
+    return render_template('products/cat.html')
 
 @app.route("/home")
 
 def home():
-    products=Addproduct.query.filter(Addproduct.stock>0)
-    brands= Brand.query.join(Addproduct,(Brand.id==Addproduct.brand_id)).all()
-    categories=Category.query.join(Addproduct,(Category.id==Addproduct.category_id)).all()
-    return render_template('products/index.html',products=products,brands=brands,categories=categories)
+   
+    return render_template('main/index.html')
 
 
 @app.route('/brand/<int:id>')
@@ -21,7 +32,7 @@ def get_brand(id):
     brand=Addproduct.query.filter_by(brand_id=id)
     brands= Brand.query.join(Addproduct,(Brand.id==Addproduct.brand_id)).all()
     categories=Category.query.join(Addproduct,(Category.id==Addproduct.category_id)).all()
-    return render_template('products/index.html',brand=brand,brands=brands,categories=categories)
+    return render_template('products/car.html',brand=brand,brands=brands,categories=categories)
 
 
 @app.route('/categories/<int:id>')
@@ -30,7 +41,7 @@ def get_category(id):
     get_cat_prod=Addproduct.query.filter_by(category_id=id)
     brands= Brand.query.join(Addproduct,(Brand.id==Addproduct.brand_id)).all()
     categories=Category.query.join(Addproduct,(Category.id==Addproduct.category_id)).all()
-    return render_template('products/index.html',get_cat_prod=get_cat_prod, categories=categories,brands=brands)
+    return render_template('products/car.html',get_cat_prod=get_cat_prod, categories=categories,brands=brands)
 
 
 
