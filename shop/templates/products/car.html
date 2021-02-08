@@ -16,23 +16,40 @@
     <script src="{{url_for('static', filename='js/script2.js')}}"></script>
 
 <style>
+  .float-left btn btn-sm btn-primary{
+    border-radius: 2px;
+  }
   .searchbar{
     float: right;
+    position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
   }
 
  .filterhead{
    text-align:left;
    padding-left: 10px;
    font-size: large;
-   font-family: 'Times New Roman', Times, serif;
+   position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: auto;
+
  }
   
   .card{
-    border-radius: 35px;
+    border-radius: 50px;
+    height:100%;
+    background-color:#dddddd;
+
+
   }
 
   .card-img-top{
-    border-radius: 35px;
+    border-radius: 50px;
+    height: 50%;
+    
+  
+
   }
 
 
@@ -41,13 +58,16 @@
 }
   #myBtnContainer{
    float: left;
+   position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
 
   }
 .btn {
   border: none;
   outline: none;
   padding: 12px 16px;
-  background-color: #ad1d45;
+  background-color: #c5a880;
   cursor: pointer;
   
 }
@@ -57,6 +77,7 @@
    padding-bottom: 35px;
    font-family:Arial, Helvetica, sans-serif;
    font-size: 70px;
+   color: #c5a880;
   }
   .bannerpar{
     font-family: Arial, Helvetica, sans-serif;
@@ -64,7 +85,8 @@
     font-size:40px;
   }
   hr{
-    opacity: 0.3;
+    opacity: 0.7;
+
   }
   .heroImage {
 	background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.9)), url("/static/11.png");
@@ -86,7 +108,7 @@
   overflow: hidden;
   width: 250px;
   border: 2px solid white;
-  border-color: #ad1d45;
+  border-color: #c5a880;
   border-radius: 20px;
   margin: 0 auto; 
   display: block;
@@ -95,7 +117,7 @@
   cursor:pointer;
 }
 .bookButton:hover{
-   background-color: #ad1d45;
+   background-color: #c5a880;
   
 }
 
@@ -192,7 +214,7 @@ a:link {
 
   body{
     background-color: #010101;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: Arial, Helvetica, sans-serif;
   }
   img{
     width: 100%;
@@ -219,6 +241,9 @@ a:link {
         text-align: center;
         padding-top: 50px;
         color:white;
+        position: -webkit-sticky; /* Safari */
+  position: sticky;
+
      
     }
    
@@ -270,7 +295,7 @@ function showSlides(n) {
   </div>
 </nav>
 </div>
-<hr color="white">
+<hr color="#c5a880">
 <br>
 <br>
 <br>
@@ -280,7 +305,7 @@ function showSlides(n) {
 
 <div class="heroImage">
 	<div class="heroContents"></a>
-		<h1 class="bannertext">Exchange your old battery</h1>
+		<h1 class="bannertext">Exchange Your Old Battery</h1>
 		<p class="bannerpar">Get flat 50% off on new</p>
 		<a href="/car"><button class="bookButton">Cick to know more</button></a>
 	</div>
@@ -294,7 +319,7 @@ function showSlides(n) {
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
   </form>
 </div>
-<h3 class="filterhead"><font color="white">Filter Products By:</h3></font>
+<h3 class="filterhead"><font color="#c5a880">Filter Products By:</h3></font>
 
 
 
@@ -348,7 +373,8 @@ function showSlides(n) {
       {% for b in brand %}
       <div class="col-md-3 mt-3">
           <div class="card">
-              <img src="{{url_for('static',filename='images/'+  b.image_1)}}" alt="{{ b.name}}" class="card-img-top"height="200">
+      
+              <img src="{{url_for('static',filename='images/'+  b.image_1)}}" alt="{{ b.name}}" class="card-img-top">
               <div class="card-body"></div>
               {% if  b.discount>0 %}
               <h5 style="text-shadow:1px 1px 2px #000; color:red; transform: rotate(-15deg),position:absolute;left:20%;">Discount:{{b.discount}}%</h5>
@@ -360,13 +386,14 @@ function showSlides(n) {
                   </div>
               </div>
           </div>
+      
 {% endfor %}
 
 {% elif get_cat_prod %}
 {%for get_cat in get_cat_prod%}
 <div class="col-md-3 mt-3">
   <div class="card">
-      <img src="{{url_for('static',filename='images/'+   get_cat.image_1)}}" alt="{{  get_cat.name}}" class="card-img-top"height="200">
+      <img src="{{url_for('static',filename='images/'+   get_cat.image_1)}}" alt="{{  get_cat.name}}" class="card-img-top">
       <div class="card-body"></div>
       {% if  get_cat.discount>0 %}
       <h5 style="text-shadow:1px 1px 2px #000; color:red; transform: rotate(-15deg),position:absolute;left:20%;">Discount:{{ get_cat.discount}}%</h5>
@@ -386,7 +413,8 @@ function showSlides(n) {
       {% for product in products %}
       <div class="col-md-3 mt-3">
           <div class="card">
-              <img src="{{url_for('static',filename='images/'+product.image_1)}}" alt="{{product.name}}" class="card-img-top"height="200">
+      
+              <img src="{{url_for('static',filename='images/'+product.image_1)}}" alt="{{product.name}}" class="card-img-top">
               <div class="card-body"></div>
               {% if product.discount>0 %}
               <h5 style="text-shadow:1px 1px 2px #000; color:red; transform: rotate(-15deg),position:absolute;left:20%;">Discount:{{product.discount}}%</h5>
@@ -394,6 +422,7 @@ function showSlides(n) {
               <h5 class="text-center">{{product.name}}</h5>
               <p class="text-center">Rs.{{product.price}}</p>
                   <div class="card-footer">
+            
                       <a href="#"class="float-left btn btn-sm btn-primary">Detail</a><a href="#"class="float-right btn btn-sm btn-warning">Add to cart</a>
                   </div>
               </div>
@@ -407,7 +436,7 @@ function showSlides(n) {
 
 <br>
 <br>
-<hr color="white">
+<hr color="#c5a880">
       <!--footer-->
       <footer id="footer" class="footer-1">
         <div class="main-footer widgets-dark typo-light">
