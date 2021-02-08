@@ -2,7 +2,7 @@
 <head>
 <title>SpareMate</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- keeping all scripts and style local for faster load times-->
     <!--bootstrap-->
     <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
@@ -12,26 +12,22 @@
     <script src="{{url_for('static', filename='js/popper.min.js')}}"></script>
     <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
     <script src="{{url_for('static', filename='js/index.js')}}"></script>
-
 <style>
  p{
    font-size: large;
  }
-  
   .image1 .text{
         position: absolute;
         z-index: 999;
         margin: 0 auto;
         left: 0;
         right: 0;
-        
-      
+            
   }
 .nav-link{
   font-family: 'Times New Roman', Times, serif;
   color: white;
 }
-  
   .btn btn-outline-light my-2 my-sm-0{
     color:white;
   }
@@ -50,7 +46,6 @@
   transition: 0.3s;     
 }
 
-
 .blue-btn{
   height: 64px;
   font: normal normal 700 1em/4em Arial,sans-serif;
@@ -62,10 +57,10 @@
   margin: 0 auto; 
   display: block;
   align-items: center;
+  text-decoration: none;
 
   cursor:pointer;
 }
-
 .blue-btn:hover{
    background-color: #ad1d45;
   

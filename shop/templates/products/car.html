@@ -16,8 +16,16 @@
     <script src="{{url_for('static', filename='js/script2.js')}}"></script>
 
 <style>
+  .searchbar{
+    float: right;
+  }
 
- 
+ .filterhead{
+   text-align:left;
+   padding-left: 10px;
+   font-size: large;
+   font-family: 'Times New Roman', Times, serif;
+ }
   
   .card{
     border-radius: 35px;
@@ -32,9 +40,7 @@
     list-style-type: none;
 }
   #myBtnContainer{
-    display: table;
-  margin-right: auto;
-  margin-left: auto;
+   float: left;
 
   }
 .btn {
@@ -259,11 +265,7 @@ function showSlides(n) {
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
     
-    <div class="sear">
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search for product" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+   
   </div>
   </div>
 </nav>
@@ -286,8 +288,15 @@ function showSlides(n) {
 <hr color="white">
 
 <h2 class="center"><font size="20px">Popular products</h2></font>
-<h3 class="center">Filter by:</h3>
-<br>
+<div class="searchbar">
+  <form class="form-inline my-2 my-lg-0">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search for product" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+</div>
+<h3 class="filterhead"><font color="white">Filter Products By:</h3></font>
+
+
 
 
 <!-- Control buttons -->
@@ -320,21 +329,15 @@ function showSlides(n) {
        {% endfor %}
       </div>
     </li>
-
-
-
-
-
-
-
-
-
-
-
-
 </div>
-
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 <!--cards-->
 <div class="container">
