@@ -3,6 +3,17 @@ from shop import db ,app
 from shop.products.models import Addproduct
 
 
+def MergeDict(dict1,dict2):
+    if isinstance(dict1 ,list) and isinstance(dict2,list):
+        return dict1+dict2
+
+    elif isinstance(dict1,dict) and isinstance(dict2,dict):
+
+        return dict(list(dict1.items())+ list(dict2.items()))
+
+    return False
+
+
 @app.route('/addcart',methods=['POST'])
 
 def AddCart():
@@ -19,6 +30,19 @@ def AddCart():
 
             if 'Shoppingcart'in session:
                 print(session['Shoppingcart'])
+
+                if product_id in session['Shoppingcart']:
+                    print('This product is already in your cart')
+                    flash('Product already exists in your cart','danger')
+
+
+                else:
+                    session['Shoppingcart']=MergeDict(session['Shoppingcart'],DictItems)
+                    flash('Product was added to your cart','success')
+
+                    return redirect(request.referrer)
+
+
 
             else:
 

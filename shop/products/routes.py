@@ -8,8 +8,8 @@ from sqlalchemy.exc import IntegrityError
 
 
 
-@app.route("/car")
-def car():
+@app.route("/product_page")
+def product_page():
     page=request.args.get('page',1,type=int)
     products=Addproduct.query.filter(Addproduct.stock>0).order_by(Addproduct.id.desc()).paginate(page=page,per_page=4)
     brands= Brand.query.join(Addproduct,(Brand.id==Addproduct.brand_id)).all()
@@ -20,8 +20,10 @@ def car():
 def single_page(id):
 
     product=Addproduct.query.get_or_404(id)
+    brands= Brand.query.join(Addproduct,(Brand.id==Addproduct.brand_id)).all()
+    categories=Category.query.join(Addproduct,(Category.id==Addproduct.category_id)).all()
 
-    return render_template('products/single_page.html',product=product)
+    return render_template('products/single_page.html',product=product,brands=brands,categories=categories)
 
 
 

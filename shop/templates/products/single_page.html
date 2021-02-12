@@ -1,7 +1,18 @@
 {% extends 'layout.html' %}
-
+{% include '_messages.html'%}
 {% block body %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
+   .dropdown-item:hover {
+            background-color: #3D3D3D;
+            color: white;
+        }
+     
+  .navbar .nav-item .dropdown-menu{ display: none; }
+  .navbar .nav-item:hover .dropdown-menu{ display: block; }
+.ct{
+    float: right;
+  }
 .pr{
     font-size: 35px;
 }
@@ -27,17 +38,44 @@ img:hover{
     float: right;
 }
 </style>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/product_page"><font color="black">All products</a></font>
+              </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               Brands
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                {% for brand in brands %}
+                <a class="dropdown-item" href="{{url_for('get_brand', id=brand.id)}}">{{brand.name}}</a>
+                {% endfor %}
+              </div>
+            </li>
+             
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                 Categories
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    {% for category in categories %}
+                  <a class="dropdown-item" href="{{url_for('get_category',id=category.id)}}">{{category.name}}</a>
+                  {% endfor %}
+                </div>
+              </li>
+              <div class="ct">
+                <li class="nav-item">
+                  <a href="#" class="nav-link"><font color="black" style="font-size:15px;padding-right: 10px;" class="fa fa-shopping-cart" tabindex="-1">({{ session['Shoppingcart']|length }}) </a></font>
+          </ul>
+        </div>
+    </nav>
    
-  
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="#" tabindex="-1"><font color="black">Cart({{session['Shoppingcart']|length}})</a></font>
-        </li>
-      </ul>
-    </div>
-  </nav>
+</div>
+</div>
 <br>
 <br>
 <br>
