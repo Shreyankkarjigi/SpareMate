@@ -29,9 +29,10 @@
             background-color: #3A3B3C;
         }
         
-        body {
-            background: #161618;
-        }
+        body{
+    background-color: #010101;
+    font-family: 'Times New Roman', Times, serif;
+  }
         
         .clock {
             text-align: right;
@@ -115,16 +116,7 @@
 
             </ul>
         </div>
-        <div class="clock">
-            <h6 align="center">
-                <font color="white">Time</h6>
-            </font>
-            <span id="hr">00</span>
-            <span> : </span>
-            <span id="min">00</span>
-            <span> : </span>
-            <span id="sec">00</span>
-        </div>
+ 
     </nav>
     <br>
     <br>
@@ -164,7 +156,7 @@
         <br> {% from "_formhelpers.html" import render_field %}
 
         <form action="" method="POST" enctype="multipart/form-data">
-            {{render_field(form.name,class="form-control",placeholder="Product name")}} {{render_field(form.price,class="form-control",placeholder="Product price")}} {{render_field(form.discount,class="form-control",placeholder="Product discount")}} {{render_field(form.stock,class="form-control",placeholder="Discount")}}
+            {{render_field(form.name,class="form-control",placeholder="Product name")}} {{render_field(form.price,class="form-control",placeholder="Product price")}} {{render_field(form.discount,class="form-control",placeholder="Product discount")}} {{render_field(form.stock,class="form-control",placeholder="Stock")}}
             {{render_field(form.origin,class="form-control",placeholder="Origin")}} {{render_field(form.colors,class="form-control",placeholder="Product color")}} {{render_field(form.description,class="form-control",placeholder="Description",rows="10")}}
 
             <label for="brand"><font color="white">Add a brand</label></font>

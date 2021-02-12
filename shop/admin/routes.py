@@ -66,6 +66,7 @@ def register():
                    password=hash_password)
         db.session.add(user)
         db.session.commit()
+        '''
         server= smtplib.SMTP("smtp.gmail.com",587)
         server.starttls()
         server.login("Sparematenoreply@gmail.com","Sparemate@123")
@@ -73,7 +74,7 @@ def register():
         message="Admin registration complete"
         emails=['androgeek123@gmail.com',form.email.data,'skarjigi98@gmail.com']
         server.sendmail("Sparematenoreply@gmail.com",emails,message)
-
+        '''
 
 
 

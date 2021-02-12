@@ -13,7 +13,7 @@ basedir=os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__)
 app.secret_key = 'eeeopopdopeppokakopkoapkaopap'
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///localhost24.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///localhost254655.db'
 db = SQLAlchemy(app)
 app.config['UPLOADED_PHOTOS_DEST']=os.path.join(basedir,'static/images')
 photos = UploadSet('photos', IMAGES)
@@ -24,5 +24,5 @@ db = SQLAlchemy(app)
 brcypt=Bcrypt(app)
 app.config['PERMANENT_SESSION_LIFETIME'] =  timedelta(minutes=5)
 from shop.admin import routes
-
 from shop.products import routes
+from shop.carts import carts

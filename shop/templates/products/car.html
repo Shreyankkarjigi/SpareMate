@@ -13,25 +13,29 @@
     <script src="{{url_for('static', filename='js/jquery-3.5.1.js')}}"></script>
     <script src="{{url_for('static', filename='js/popper.min.js')}}"></script>
     <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
-    <script src="{{url_for('static', filename='js/script2.js')}}"></script>
+ 
 
 <style>
+  img:hover{
+    transform: scale(3.5); 
+    -webkit-transform:scale(1.3); /* Safari and Chrome */
+    -moz-transform:scale(1.3); /* Firefox */
+    -ms-transform:scale(1.3); /* IE 9 */
+    -o-transform:scale(1.3); /* Opera */
+    
+}
   .welcome{
-  background-image: url('/static/23.png');
+  background-image: url('/static/17.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: auto;
   width: 100%;
   height:100%;
-  padding-top:70px;
- 
-
-
- 
+  padding-top:120px;
   }
   .hero{
-    font-size:200px;
-    margin-top: 90px;
+    font-size:210px;
+    margin-top: 60px;
     font-family: Corbert Condensed Italic;
     color:#f5f4f4 ;
     text-align: center;
@@ -63,9 +67,6 @@
   }
   .searchbar{
     float: right;
-    position: -webkit-sticky; /* Safari */
-  position: sticky;
-  top: 0;
   }
 
  .filterhead{
@@ -98,21 +99,15 @@
   li {
     list-style-type: none;
 }
-  #myBtnContainer{
-   float: left;
-   position: -webkit-sticky; /* Safari */
-  position: sticky;
-  top: 0;
 
-  }
 .btn {
   border: none;
-  outline: none;
   padding: 12px 16px;
-  background-color: #c5a880;
   cursor: pointer;
+  border-radius: 15px;
   
 }
+
 
   .bannertext{
     text-align: center;
@@ -144,29 +139,11 @@
 	color: white;
   width: 100%;
 }
-.bookButton{
-  height: 64px;
-  font: normal normal 700 1em/4em Arial,sans-serif;
-  overflow: hidden;
-  width: 250px;
-  border: 2px solid white;
-  border-color: #c5a880;
-  border-radius: 20px;
-  margin: 0 auto; 
-  display: block;
-  align-items: center;
 
-  cursor:pointer;
-}
-.bookButton:hover{
-   background-color: #c5a880;
-  
-}
 
-.bookButton a:hover{
-  text-decoration: none;
-}
-    /*footer style*/
+
+
+/*footer style*/
 footer .main-footer{	padding: 20px 0;	background: #010101;}
 footer ul{	padding-left: 0;	list-style: none;}
 
@@ -225,9 +202,8 @@ footer.light .footer-copyright{	background: none repeat scroll 0 0 rgba(255, 255
 ul.social-footer2 {	margin: 0;padding: 0;	width: auto;}
 ul.social-footer2 li {display: inline-block;padding: 0;}
 ul.social-footer2 li a:hover {background-color:#fff;}
-ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: center;}
-.btn{background-color: #0e49b5; color:#fff;}
-.btn:hover, .btn:focus, .btn.active {background: #fff;color: #000;
+ul.social-footer2 li a {display: block;	height:30px;width: 30px;text-align: center;
+
 -webkit-box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 -moz-box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 -ms-box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
@@ -318,7 +294,7 @@ function showSlides(n) {
 </script>
 <!--navbar-->
 <nav class="navbar navbar-expand-lg navbar-light bg-black">
-  <a class="navbar-brand" href="/home"><font color="white">SpareMate<font color="#FF9933" size="2px">I</font><font color="#FFFFFF" size="2x">N</font><font color="	#138808" size="2px">D</font></a></font>
+  <a class="navbar-brand" href="/home"><font color="white">SpareMate</a></font>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -326,10 +302,8 @@ function showSlides(n) {
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-    
-   
-  </div>
-  </div>
+</div>
+</div>
 </nav>
 </div>
 <hr color="#c5a880">
@@ -338,8 +312,7 @@ function showSlides(n) {
 <br>
 <!--header-->
 <div class="welcome">
-<h1 align="center" class="hero"><font color="#FF9933">Spare</font>Mate</font>.<font color="#008000"size="15px">IN</font></font></h1>
-
+<h1 align="center" class="hero"> SpareMate</font></h1>
 </div>
 <br>
 <br>
@@ -347,18 +320,16 @@ function showSlides(n) {
 <br>
 <br>
 <br>
-
 <!--header ends-->
-
 <hr color="white">
-<h2 class="center"><font size="20px">Popular products</h2></font>
+<h2 class="center"><font size="15px">Popular products</h2></font>
 <div class="searchbar">
   <form class="form-inline my-2 my-lg-0">
     <input class="form-control mr-sm-2" type="search" placeholder="Search for product" aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    <button class="btn btn btn-dark my-1 my-sm-0" type="submit">Search</button>
   </form>
 </div>
-<h3 class="filterhead"><font color="#c5a880">Filter Products By:</h3></font>
+<h3 class="filterhead"><font color="#dddddd">Filter Products By:</h3></font>
 <!-- Control buttons -->
 <div id="myBtnContainer">
   <li class="nav-item">
@@ -392,68 +363,152 @@ function showSlides(n) {
 <!--cards-->
 <div class="container">
   <div class="row">
-
       {% if brand %}
-
-      {% for b in brand %}
+      {% for b in brand.items %}
       <div class="col-md-3 mt-3">
-          <div class="card">
-            
-  
+      <div class="card">
               <img src="{{url_for('static',filename='images/'+  b.image_1)}}" alt="{{ b.name}}" class="card-img-top">
-              <div class="card-body"></div>
+              <div class="card-body">
               {% if  b.discount>0 %}
               <h5 style="text-shadow:1px 1px 2px #000; color:red; transform: rotate(-15deg),position:absolute;left:20%;">Discount:{{b.discount}}%</h5>
               {% endif %}
               <h5 class="text-center">{{ b.name}}</h5>
               <p class="text-center">Rs.{{ b.price}}</p>
+              </div>
                   <div class="card-footer">
-                      <a href="#"class="float-left btn btn-sm btn-primary">Detail</a><a href="#"class="float-right btn btn-sm btn-warning">Add to cart</a>
+                      <a href="{{url_for('single_page',id=b.id)}}"class="float-left btn btn-sm btn-light">Detail</a><a href="#"class="float-right btn btn-sm btn-dark">Add to cart</a>
                   </div>
               </div>
-          </div>
-      
+          </div>     
 {% endfor %}
+        </div>
 
+<!--pagination brand-->
+
+<div class="row">
+  <div class="col text-center">
+
+ {% if brand.has_prev %}
+ <font color="white"><a href="{{url_for('get_brand',id=get_b.id,page=get_cat_prod.prev_num)}}" class="btn btn-outline-light btn-sm mt-3">Previous</font></a>
+ {% endif %}
+
+ {% if brand.total>4%}
+
+{% for page_num in brand.iter_pages(left_edge=1,right_edge=2,left_current=1,right_current=2)%}
+{% if page_num %}
+{% if brand.page==page_num %}
+<font color="white"><a href="{{url_for('get_brand',id=get_b.id,page=page_num)}}" class="btn btn-outline-light btn-sm mt-3">{{page_num}}</font></a>
+{% else %}
+<font color="white"><a href="{{url_for('get_brand',id=get_b.id,page=page_num)}}" class="btn btn-outline-light btn-sm mt-3">{{page_num}}</font></a>
+{% endif %}
+{% else %}
+...
+{% endif %}
+{% endfor %}
+{% endif %}
+{% if brand.has_next %}
+<font color="white"><a href="{{url_for('get_brand',page=get_cat_prod.next_num)}}" class="btn btn-outline-light btn-sm mt-3">Next</font></a>
+{% endif %}
+</div>
+</div>
+
+<!--pagination brand end-->
+<div class="row">
 {% elif get_cat_prod %}
-{%for get_cat in get_cat_prod%}
-<div class="col-md-3 mt-3">
+{%for get_cat in get_cat_prod.items %}
+<div class="col-md-3 mt-4">
   <div class="card">
       <img src="{{url_for('static',filename='images/'+   get_cat.image_1)}}" alt="{{  get_cat.name}}" class="card-img-top">
-      <div class="card-body"></div>
+      <div class="card-body">
       {% if  get_cat.discount>0 %}
       <h5 style="text-shadow:1px 1px 2px #000; color:red; transform: rotate(-15deg),position:absolute;left:20%;">Discount:{{ get_cat.discount}}%</h5>
       {% endif %}
       <h5 class="text-center">{{get_cat.name}}</h5>
       <p class="text-center">Rs.{{get_cat.price}}</p>
+      </div>
           <div class="card-footer">
-              <a href="#"class="float-left btn btn-sm btn-primary">Detail</a><a href="#"class="float-right btn btn-sm btn-warning">Add to cart</a>
+              <a href="{{url_for('single_page',id=get_cat.id)}}"class="float-left btn btn-sm btn btn-light">Detail</a><a href="#"class="float-right btn btn-sm btn btn-dark">Add to cart</a>
           </div>
       </div>
   </div>
-
+</div>
 {%endfor%}
+</div>
+<!--pagination 2 cat-->
+<div class="row mt-4">
+<div class="col text-center">
 
+ {% if get_cat_prod.has_prev %}
+ <font color="white"><a href="{{url_for('get_category',id=get_cat.id,page=get_cat_prod.prev_num)}}" class="btn btn-outline-light btn-sm mt-3">Previous</font></a>
+ {% endif %}
+ {% if get_cat_prod.total>4 %}
+{% for page_num in get_cat_prod.iter_pages(left_edge=1,right_edge=2,left_current=1,right_current=2)%}
+{% if page_num %}
+{% if get_cat_prod.page==page_num %}
+<font color="white"><a href="{{url_for('get_category',id=get_cat.id,page=page_num)}}" class="btn btn-outline-light btn-sm mt-3">{{page_num}}</font></a>
+{% else %}
+<font color="white"><a href="{{url_for('get_category',id=get_cat.id,page=page_num)}}" class="btn btn-outline-light btn-sm mt-3">{{page_num}}</font></a>
+{% endif %}
+{% else %}
+...
+{% endif %}
+{% endfor %}
+{% endif %}
+{% if get_cat_prod.has_next %}
+<font color="white"><a href="{{url_for('get_category',page=get_cat_prod.next_num)}}" class="btn btn-outline-light btn-sm mt-3">Next</font></a>
+{% endif %}
+</div>
+</div>
+<!--pagination 2 cat end-->
+<div class="row">
       {% else %}
-
-      {% for product in products %}
+      {% for product in products.items %}
       <div class="col-md-3 mt-3">
           <div class="card">
       
               <img src="{{url_for('static',filename='images/'+product.image_1)}}" alt="{{product.name}}" class="card-img-top">
-              <div class="card-body"></div>
+              <div class="card-body">
               {% if product.discount>0 %}
               <h5 style="text-shadow:1px 1px 2px #000; color:red; transform: rotate(-15deg),position:absolute;left:20%;">Discount:{{product.discount}}%</h5>
               {% endif %}
               <h5 class="text-center">{{product.name}}</h5>
               <p class="text-center">Rs.{{product.price}}</p>
+          </div>
                   <div class="card-footer">
             
-                      <a href="#"class="float-left btn btn-sm btn-primary">Detail</a><a href="#"class="float-right btn btn-sm btn-warning">Add to cart</a>
+                      <a href="{{url_for('single_page',id=product.id)}}"class="float-left btn btn-sm btn btn-light">Detail</a><a href="#"class="float-right btn btn-sm btn btn-dark">Add to cart</a>
                   </div>
               </div>
-          </div>
+          </div> 
 {% endfor %}
+</div>
+<br>
+<br>
+<br>
+<br>
+<div class="row">
+<div class="col text-center">
+ {% if products.has_prev %}
+ <font color="white"><a href="{{url_for('car',page=products.prev_num)}}" class="btn btn-outline-light btn-sm mt-3">Previous</font></a>
+ {% endif %}
+{% if products.total>4 %}
+{% for page_num in products.iter_pages(left_edge=1,right_edge=2,left_current=1,right_current=2)%}
+{% if page_num %}
+{% if products.page==page_num %}
+<font color="white"><a href="{{url_for('car',page=page_num)}}" class="btn btn-outline-light btn-sm mt-3">{{page_num}}</font></a>
+{% else %}
+<font color="white"><a href="{{url_for('car',page=page_num)}}" class="btn btn-outline-light btn-sm mt-3">{{page_num}}</font></a>
+{% endif %}
+{% else %}
+...
+{% endif %}
+{% endfor %}
+{% endif %}
+{% if products.has_next %}
+<font color="white"><a href="{{url_for('car',page=products.next_num)}}" class="btn btn-outline-light btn-sm mt-3">Next</font></a>
+{% endif %}
+</div>
+</div>
 
 {% endif %}
       </div>
@@ -475,7 +530,6 @@ function showSlides(n) {
         <p>About the company, little discription will goes here.. </p>
         </div>
         </div>
-        
         <div class="col-xs-12 col-sm-6 col-md-3">
         <div class="widget no-box">
         <h5 class="widget-title">Quick Links<span></span></h5>
@@ -504,10 +558,8 @@ function showSlides(n) {
         </ul>
         </div>
         </div>
-        
         <div class="col-xs-12 col-sm-6 col-md-3">
         <div class="widget no-box">
-       
         <p>Subscribe to our mailing list.</p>
         <a class="btn" href="#." target="_blank">Register Now</a>
         </div>
@@ -530,7 +582,6 @@ function showSlides(n) {
         </div>
         </div>
         </div>
-          
         <div class="footer-copyright">
         <div class="container">
         <div class="row">
