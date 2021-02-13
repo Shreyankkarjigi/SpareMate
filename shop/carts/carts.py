@@ -1,6 +1,7 @@
 from flask import redirect ,render_template,url_for,flash,request,session,current_app
 from shop import db ,app
 from shop.products.models import Addproduct
+from num2words import num2words 
 
 
 def MergeDict(dict1,dict2):
@@ -42,11 +43,10 @@ def AddCart():
 
                     return redirect(request.referrer)
 
-
-
             else:
 
                 session['Shoppingcart']=DictItems
+               
                 return redirect(request.referrer)
 
             
@@ -59,4 +59,24 @@ def AddCart():
         return redirect(request.referrer)
 
 
+@app.route('/carts')
 
+def getCart():
+    if 'Shoppingcart' not in session:
+
+        return redirect(request.referrer)
+    subtotal=0
+    grandtotal=0
+
+    for key,product in session['Shoppingcart'].items():
+
+        discount=(product['discount']/100)*float(product['price'])
+        subtotal+=float(product['price'])*int(product['quantity'])
+        subtotal-=discount
+        tax=("%.2f"%(.06 *float(subtotal)))
+        grandtotal=float("%.2f" %(1.06 * subtotal))
+        #convert to words
+        to_words=(num2words(int(grandtotal), to = 'ordinal'))+" "+"only"
+
+
+    return render_template('products/carts.html',tax=tax,grandtotal=grandtotal,to_words=to_words)

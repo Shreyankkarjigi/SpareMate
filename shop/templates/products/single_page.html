@@ -1,8 +1,13 @@
 {% extends 'layout.html' %}
-{% include '_messages.html'%}
 {% block body %}
+<br>
+{% include '_messages.html'%}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
+  .container{
+  
+    top: 10px;
+  }
    .dropdown-item:hover {
             background-color: #3D3D3D;
             color: white;
@@ -15,6 +20,10 @@
   }
 .pr{
     font-size: 35px;
+    color: white;
+}
+p,b{
+  color:white;
 }
 .product_name{
     font-family: Arial, Helvetica, sans-serif;
@@ -26,7 +35,7 @@ img{
     transition: 0.5s all ease-in-out; 
 }
 img:hover{
-    transform: scale(5.0); 
+    transform: scale(5.5); 
     -webkit-transform:scale(1.65); /* Safari and Chrome */
     -moz-transform:scale(1.65); /* Firefox */
     -ms-transform:scale(1.65); /* IE 9 */
@@ -38,50 +47,10 @@ img:hover{
     float: right;
 }
 </style>
-
-<div class="container">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="/product_page"><font color="black">All products</a></font>
-              </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-               Brands
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                {% for brand in brands %}
-                <a class="dropdown-item" href="{{url_for('get_brand', id=brand.id)}}">{{brand.name}}</a>
-                {% endfor %}
-              </div>
-            </li>
-             
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                 Categories
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    {% for category in categories %}
-                  <a class="dropdown-item" href="{{url_for('get_category',id=category.id)}}">{{category.name}}</a>
-                  {% endfor %}
-                </div>
-              </li>
-              <div class="ct">
-                <li class="nav-item">
-                  <a href="#" class="nav-link"><font color="black" style="font-size:15px;padding-right: 10px;" class="fa fa-shopping-cart" tabindex="-1">({{ session['Shoppingcart']|length }}) </a></font>
-          </ul>
-        </div>
-    </nav>
-   
-</div>
-</div>
 <br>
 <br>
 <br>
 <br>
-<script src="{{url_for('static', filename='js/index.js')}}"></script>
-
 <div class="container mt-5">
     <div class="row">
     
@@ -95,7 +64,7 @@ img:hover{
         <p>Product origin:{{product.origin}}</p>
         <p>Color:{{product.colors}}</p>
         {% if product.discount >0 %}
-        <p>Discount:{{product.discount}} %</p>
+        <p><font color="red">Discount:{{product.discount}}%</p></font>
         {% endif %}
         <b>Product Description</b>
         <p>{{product.description}}</p>

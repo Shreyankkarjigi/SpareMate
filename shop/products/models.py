@@ -23,14 +23,6 @@ class Addproduct(db.Model):
     def __repr__(self):
         return '<Addproduct %r>' % self.name
 
-
-
-
-
-
-
-
- 
 class Brand(db.Model):
     id=db.Column(db.Integer,primary_key=True)
     name=db.Column(db.String(30),nullable=True,unique=True)
