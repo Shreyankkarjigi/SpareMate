@@ -4,13 +4,16 @@
 {% include '_messages.html'%}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
+    .status{
+        font-size: larger;
+    }
   .container{
   
     top: 10px;
   }
    .dropdown-item:hover {
             background-color: #3D3D3D;
-            color: white;
+            color: #e5e4e2;
         }
      
   .navbar .nav-item .dropdown-menu{ display: none; }
@@ -20,10 +23,10 @@
   }
 .pr{
     font-size: 35px;
-    color: white;
+    color: #e5e4e2;
 }
 p,b{
-  color:white;
+  color:#e5e4e2;
 }
 .product_name{
     font-family: Arial, Helvetica, sans-serif;
@@ -66,6 +69,12 @@ img:hover{
         {% if product.discount >0 %}
         <p><font color="red">Discount:{{product.discount}}%</p></font>
         {% endif %}
+        <b>Product Availability</b>
+        {% if product.stock>0%}
+        <p><font color="green" class="status">In stock</font></p>
+        {%else%}
+        <p><font color="red" class="status">Out of stock</font></p>
+        {% endif %}
         <b>Product Description</b>
         <p>{{product.description}}</p>
         <hr>
@@ -76,11 +85,11 @@ img:hover{
 
         <button type="submit" class="btn btn-dark">Add to cart</button>
 
-        <label for=""><font color="white">Quantity:</label></font>
+        <label for=""><font color="#e5e4e2">Quantity:</label></font>
 
         <input type='number' name="quantity" id="" value="1" min='1' max="{{product.stock}}">
         {% set colors=product.colors.split(',') %}
-        <label for="colors"><font color="white">Colors:</label></font>
+        <label for="colors"><font color="#e5e4e2">Colors:</label></font>
         <select name="colors" id="">
 
             {% for color in colors %}

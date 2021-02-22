@@ -4,7 +4,7 @@
    
    
     td,th{
-        color: white;
+        color: #e5e4e2;
     }
     body{
         font-family: Arial, Helvetica, sans-serif;
@@ -20,7 +20,7 @@
         float:right;
     }
     h5{
-        color: white;
+        color: #e5e4e2;
     }
 </style>
 <body>
@@ -28,7 +28,7 @@
 <br>
 <br>
 
-<h1 class="text-center"><font color="white">Your Cart <i class="fa fa-shopping-cart" style="font-size:36px"></i></h1></font>
+<h1 class="text-center"><font color="#e5e4e2">Your Cart <i class="fa fa-shopping-cart" style="font-size:36px"></i></h1></font>
 {% include '_messages.html'%}
 <br>
 <div class="container">
@@ -43,11 +43,14 @@
                 <th>Name</th>
                 <th>Color</th>
                 <th>Price</th>
+                <th>Availability</th>
                 <th>Quantity</th>
                 <th>Discount</th>
                 <th>Subtotal</th>
                 <th>Update</th>
                 <th>Delete</th>
+
+            
             </thead>
             <tbody>
                 {% for key,product in session['Shoppingcart'].items() %}
@@ -71,6 +74,11 @@
                 <br>
                 <td>&#8377;{{product.price}}</td>
                 <br>
+                {% if product.stock>0 %}
+                <td><font color="green">In stock</font></td>
+                {% else%}
+                <td><font color="red">Out of stock</font></td>
+                {% endif %}
                 <form action="" method="POST">
                 <td><input type="number" name="quantity" min="1" max="10" value="{{product.quantity}}"></td>
                 <br>
@@ -106,5 +114,5 @@
     </div>
 
 </div>
-<hr color="white">
+<hr color="#e5e4e2">
 {% endblock %}

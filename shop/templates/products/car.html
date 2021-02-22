@@ -7,7 +7,7 @@
   }
   .dropdown-item:hover {
             background-color: #3D3D3D;
-            color: white;
+            color: #e5e4e2;
         }
      
   .navbar .nav-item .dropdown-menu{ display: none; }
@@ -26,7 +26,7 @@
     font-size:210px;
     margin-top: 60px;
     font-family: Corbert Condensed Italic;
-    color:#f5f4f4 ;
+    color:#e5e4e2 ;
     text-align: center;
  
   }
@@ -69,18 +69,22 @@
  }
   
   .card{
+    border: 2px solid #F5F5F5;
     border-radius: 50px;
     height:100%;
     width:100%;
-    background-color:#dddddd;
+    background-color:black;
 
 
+  }
+  .card-body{
+    color:#e5e4e2;
   }
 
   .card-img-top{
     border-radius: 50px;
     height: 50%;
-    width:100%;
+    width:90%;
   }
 
 
@@ -107,7 +111,7 @@
 .heroContents {
 	padding-bottom: 35px;
 	text-align: center;
-	color: white;
+	color: #e5e4e2;
   width: 100%;
 }
 
@@ -122,7 +126,7 @@ a:link {
   top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: white;
+  color:#e5e4e2;
 }
 
  
@@ -144,7 +148,7 @@ a:link {
     .center{
         text-align: center;
         padding-top: 50px;
-        color:white;
+        color:#e5e4e2;
         position: -webkit-sticky; /* Safari */
   position: sticky;
 
@@ -193,7 +197,7 @@ a:link {
                       <form action="{{url_for('AddCart')}}" method='post'>
                         <input type="hidden" name="b_id" value="{{b.id}}">
       
-                        <button type="submit" class="btn btn-dark float-right"><font color="white">Add to cart</button>
+                        <button type="submit" class="btn btn-dark float-right"><font color="#e5e4e2">Add to cart</button>
                 
                         <input type='hidden' name="quantity" id="" value="1">
                         {% set colors=b.colors.split(',') %}
@@ -220,7 +224,7 @@ a:link {
   <div class="col text-center">
 
  {% if brand.has_prev %}
- <font color="white"><a href="{{url_for('get_brand',id=get_b.id,page=get_cat_prod.prev_num)}}" class="btn btn-outline-light btn-sm mt-3">Previous</font></a>
+ <font color="#e5e4e2"><a href="{{url_for('get_brand',id=get_b.id,page=get_cat_prod.prev_num)}}" class="btn btn-outline-light btn-sm mt-3">Previous</font></a>
  {% endif %}
 
  {% if brand.total>4%}
@@ -228,9 +232,9 @@ a:link {
 {% for page_num in brand.iter_pages(left_edge=1,right_edge=2,left_current=1,right_current=2)%}
 {% if page_num %}
 {% if brand.page==page_num %}
-<font color="white"><a href="{{url_for('get_brand',id=get_b.id,page=page_num)}}" class="btn btn-outline-light btn-sm mt-3">{{page_num}}</font></a>
+<font color="#e5e4e2"><a href="{{url_for('get_brand',id=get_b.id,page=page_num)}}" class="btn btn-outline-light btn-sm mt-3">{{page_num}}</font></a>
 {% else %}
-<font color="white"><a href="{{url_for('get_brand',id=get_b.id,page=page_num)}}" class="btn btn-outline-light btn-sm mt-3">{{page_num}}</font></a>
+<font color="#e5e4e2"><a href="{{url_for('get_brand',id=get_b.id,page=page_num)}}" class="btn btn-outline-light btn-sm mt-3">{{page_num}}</font></a>
 {% endif %}
 {% else %}
 ...
@@ -238,7 +242,7 @@ a:link {
 {% endfor %}
 {% endif %}
 {% if brand.has_next %}
-<font color="white"><a href="{{url_for('get_brand',page=get_cat_prod.next_num)}}" class="btn btn-outline-light btn-sm mt-3">Next</font></a>
+<font color="#e5e4e2"><a href="{{url_for('get_brand',page=get_cat_prod.next_num)}}" class="btn btn-outline-light btn-sm mt-3">Next</font></a>
 {% endif %}
 </div>
 </div>
@@ -258,7 +262,7 @@ a:link {
               <a href="{{url_for('single_page', id=get_cat.id)}}" class="float-left btn btn-sm btn-light"><font color="black">Details</a></font>
               <form action="{{url_for('AddCart')}}" method="post">
                 <input type="hidden" name="product_id" value="{{get_cat.id}}">
-                <button type="submit" class="btn btn-sm btn-dark float-right"><font color="white">Add to Cart</button></font>
+                <button type="submit" class="btn btn-sm btn-dark float-right"><font color="#e5e4e2">Add to Cart</button></font>
                 <input type="hidden" name="quantity" value="1" min="1" max="20">
                 {% set colors = get_cat.colors.split(',') %}
                 <select name="colors" id="colors" style="visibility: hidden;">
@@ -279,15 +283,15 @@ a:link {
 <div class="col text-center">
 
  {% if get_cat_prod.has_prev %}
- <font color="white"><a href="{{url_for('get_category',id=get_cat.id,page=get_cat_prod.prev_num)}}" class="btn btn-outline-light btn-sm mt-3">Previous</font></a>
+ <font color="#e5e4e2"><a href="{{url_for('get_category',id=get_cat.id,page=get_cat_prod.prev_num)}}" class="btn btn-outline-light btn-sm mt-3">Previous</font></a>
  {% endif %}
  {% if get_cat_prod.total>4 %}
 {% for page_num in get_cat_prod.iter_pages(left_edge=1,right_edge=2,left_current=1,right_current=2)%}
 {% if page_num %}
 {% if get_cat_prod.page==page_num %}
-<font color="white"><a href="{{url_for('get_category',id=get_cat.id,page=page_num)}}" class="btn btn-outline-light btn-sm mt-3">{{page_num}}</font></a>
+<font color="#e5e4e2"><a href="{{url_for('get_category',id=get_cat.id,page=page_num)}}" class="btn btn-outline-light btn-sm mt-3">{{page_num}}</font></a>
 {% else %}
-<font color="white"><a href="{{url_for('get_category',id=get_cat.id,page=page_num)}}" class="btn btn-outline-light btn-sm mt-3">{{page_num}}</font></a>
+<font color="#e5e4e2"><a href="{{url_for('get_category',id=get_cat.id,page=page_num)}}" class="btn btn-outline-light btn-sm mt-3">{{page_num}}</font></a>
 {% endif %}
 {% else %}
 ...
@@ -295,7 +299,7 @@ a:link {
 {% endfor %}
 {% endif %}
 {% if get_cat_prod.has_next %}
-<font color="white"><a href="{{url_for('get_brand',page=get_cat_prod.next_num)}}" class="btn btn-outline-light btn-sm mt-3">Next</font></a>
+<font color="#e5e4e2"><a href="{{url_for('get_brand',page=get_cat_prod.next_num)}}" class="btn btn-outline-light btn-sm mt-3">Next</font></a>
 
 {% endif %}
 </div>
@@ -321,7 +325,7 @@ a:link {
 
                         <input type="hidden" name="product_id" value="{{product.id}}">
                 
-                        <button type="submit" class="btn btn-dark float-right"><font color="white">Add to cart</button></font>
+                        <button type="submit" class="btn btn-dark float-right"><font color="#e5e4e2">Add to cart</button></font>
                 
                         
                         <input type='hidden' name="quantity" id="" value="1" min='1' max="{{product.stock}}">
@@ -349,15 +353,15 @@ a:link {
 <div class="row">
 <div class="col text-center">
  {% if products.has_prev %}
- <font color="white"><a href="{{url_for('product_page',page=products.prev_num)}}" class="btn btn-outline-light btn-sm mt-3">Previous</font></a>
+ <font color="#e5e4e2"><a href="{{url_for('product_page',page=products.prev_num)}}" class="btn btn-outline-light btn-sm mt-3">Previous</font></a>
  {% endif %}
 {% if products.total>4 %}
 {% for page_num in products.iter_pages(left_edge=1,right_edge=2,left_current=1,right_current=2)%}
 {% if page_num %}
 {% if products.page==page_num %}
-<font color="white"><a href="{{url_for('product_page',page=page_num)}}" class="btn btn-outline-light btn-sm mt-3">{{page_num}}</font></a>
+<font color="#e5e4e2"><a href="{{url_for('product_page',page=page_num)}}" class="btn btn-outline-light btn-sm mt-3">{{page_num}}</font></a>
 {% else %}
-<font color="white"><a href="{{url_for('product_page',page=page_num)}}" class="btn btn-outline-light btn-sm mt-3">{{page_num}}</font></a>
+<font color="#e5e4e2"><a href="{{url_for('product_page',page=page_num)}}" class="btn btn-outline-light btn-sm mt-3">{{page_num}}</font></a>
 {% endif %}
 {% else %}
 ...
@@ -365,7 +369,7 @@ a:link {
 {% endfor %}
 {% endif %}
 {% if products.has_next %}
-<font color="white"><a href="{{url_for('product_page',page=products.next_num)}}" class="btn btn-outline-light btn-sm mt-3">Next</font></a>
+<font color="#e5e4e2"><a href="{{url_for('product_page',page=products.next_num)}}" class="btn btn-outline-light btn-sm mt-3">Next</font></a>
 {% endif %}
 </div>
 </div>

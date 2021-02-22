@@ -110,6 +110,9 @@ def updatecart(code):
                     flash("Your cart was updated",'success')
                     return redirect(url_for('getCart'))
 
+               
+
+
         except Exception as e:
 
             print(e)
