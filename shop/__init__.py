@@ -26,3 +26,4 @@ app.config['PERMANENT_SESSION_LIFETIME'] =  timedelta(minutes=5)
 from shop.admin import routes
 from shop.products import routes
 from shop.carts import carts
+from shop.customers import routes

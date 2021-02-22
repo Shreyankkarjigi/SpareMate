@@ -74,8 +74,15 @@ def addbrand():
         try:
             getbrand=request.form.get('brand')
             brand=Brand(name=getbrand)
-            db.session.add(brand)
-            db.session.commit()
+
+            if len(request.form.get('brand'))<0:
+                db.session.add(brand)
+                db.session.commit()
+
+            else:
+                flash('Field cannot be empty','danger')
+                return redirect(url_for('addbrand'))
+                
         except IntegrityError:
             db.session.rollback()
             flash(f'Brand {getbrand} already exists','danger')
@@ -102,6 +109,17 @@ def updatebrand(id):
     brand=request.form.get('brand')
     if request.method=="POST":
         updatebrand.name=brand
+        if len(updatebrand.name)<0:
+            flash(f'Your brand has been updated','success')
+            db.session.commit()
+            return redirect(url_for('brands'))
+
+        else:
+             
+
+            flash("Field cannot be empty",'danger')
+            return redirect(url_for('brands'))
+    
         flash(f'Your brand has been updated','success')
         db.session.commit()
         return redirect(url_for('brands'))
@@ -123,6 +141,7 @@ def deletebrand(id):
     
     flash(f"The brand {brand.name} can't be  deleted from your database","warning")
     return redirect(url_for('admin'))
+
 @app.route('/addcat', methods=['GET','POST'])
 def addcat():
     if 'email' not in session:
@@ -132,8 +151,18 @@ def addcat():
         try:
             getcat=request.form.get('category')
             cat=Category(name=getcat)
-            db.session.add(cat)
-            db.session.commit()
+
+
+
+    
+            if len(request.form.get('category'))<0:
+                db.session.add(cat)
+                db.session.commit()
+
+            else:
+                flash('Field cannot be empty','danger')
+                return redirect(url_for('addcat'))
+           
         except IntegrityError:
             db.session.rollback()
             flash(f'Category {getcat} already exists','danger')
@@ -154,12 +183,23 @@ def updatecategory(id):
     if 'email' not in session:
         flash(f'Please login first','danger')
     updatecategory=Category.query.get_or_404(id)
+
     category=request.form.get('category')
     if request.method=="POST":
+        
         updatecategory.name=category
-        flash(f'Your category has been updated','success')
-        db.session.commit()
-        return redirect(url_for('category'))
+
+        if len(updatecategory.name)<0:
+            flash(f'Your category has been updated','success')
+            db.session.commit()
+            return redirect(url_for('category'))
+
+        else:
+            updatecategory=Category.query.get_or_404(id)
+
+            flash("Field cannot be empty",'danger')
+            return redirect(url_for('category'))
+    
     return render_template('products/updatebrand.html',title='Update category page',updatecategory=updatecategory)
 @app.route('/deletecat/<int:id>', methods=['GET','POST'])
 def deletecat(id):
@@ -189,15 +229,28 @@ def addproduct():
         colors=form.colors.data
         brand=request.form.get('brand')
         category=request.form.get('category')
-        image_1=photos.save(request.files.get('image_1'),name=secrets.token_hex(10)+".")
-        image_2=photos.save(request.files.get('image_2'),name=secrets.token_hex(10)+".")
-        image_3=photos.save(request.files.get('image_3'),name=secrets.token_hex(10)+".")
-        certificate=photos.save(request.files.get('certificate'),name=secrets.token_hex(10)+".")
-        addpro=Addproduct(name=name,price=price,discount=discount,stock=stock,origin=origin,description=description,colors=colors,brand_id=brand,category_id=category,image_1=image_1,image_2=image_2,image_3=image_3,certificate=certificate)
-        db.session.add(addpro)
-        flash(f'The product {name} has been added to your database','success')
-        db.session.commit()
-        return redirect(url_for('admin'))
+        
+
+        #bug fix
+        #if image file missing,flash message to user
+
+        try:
+            image_1=photos.save(request.files.get('image_1'),name=secrets.token_hex(10)+".")
+            image_2=photos.save(request.files.get('image_2'),name=secrets.token_hex(10)+".")
+            image_3=photos.save(request.files.get('image_3'),name=secrets.token_hex(10)+".")
+            certificate=photos.save(request.files.get('certificate'),name=secrets.token_hex(10)+".")
+            addpro=Addproduct(name=name,price=price,discount=discount,stock=stock,origin=origin,description=description,colors=colors,brand_id=brand,category_id=category,image_1=image_1,image_2=image_2,image_3=image_3,certificate=certificate)
+            db.session.add(addpro)
+            flash(f'The product {name} has been added to your database','success')
+            db.session.commit()
+            return redirect(url_for('admin'))
+            
+
+        except Exception:
+
+            flash('Please attach all images','danger')
+            return redirect(url_for('addproduct'))
+
     return render_template('products/addproduct.html',title="Add Product",form=form,brands=brands,categories=categories)
 @app.route('/updateproduct/<int:id>',methods=['GET','POST'])
 def updateproduct(id):
@@ -220,6 +273,7 @@ def updateproduct(id):
         product.colors=form.colors.data
         product.brand_id=brand
         product.category_id=category
+
         if request.files.get('image_1'):
             try:
                 os.unlink(os.path.join(current_app.root_path,"static/images/"+product.image_1))

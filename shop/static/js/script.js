@@ -1,13 +1,18 @@
-var b_image=document.getElementById('b_image');
-var s_image=document.getElementById('s_image').getElementsByTagName('img');
+// Wrap every letter in a span
+var textWrapper = document.querySelector('.ml3');
+textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
 
-for(var i=0;i<s_image.length;i++){
-    s_image[i].addEventListener9('click',full_image);
-}
-
-function full_image(){
-
-    var ImageSrc=this.getAttribute('src');
-    b_image.innerHTML="<img src="+ImageSrc+">"
-
-}
+anime.timeline({loop: true})
+  .add({
+    targets: '.ml3 .letter',
+    opacity: [0,1],
+    easing: "easeInOutQuad",
+    duration: 2250,
+    delay: (el, i) => 150 * (i+1)
+  }).add({
+    targets: '.ml3',
+    opacity: 0,
+    duration: 1000,
+    easing: "easeOutExpo",
+    delay: 1000
+  });

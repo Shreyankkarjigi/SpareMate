@@ -125,11 +125,7 @@ a:link {
   color: white;
 }
 
-  body{
-    background-color: #010101;
-    font-family: Arial, Helvetica, sans-serif;
-  }
-  
+ 
   
   
   a{
@@ -171,6 +167,7 @@ a:link {
 <br>
 <br>
 <!--header ends-->
+
 <hr color="white" class="hr1">  
 {% include '_messages.html'%}
 <h2 class="center"><font size="15px">Popular products</h2></font>
@@ -298,7 +295,8 @@ a:link {
 {% endfor %}
 {% endif %}
 {% if get_cat_prod.has_next %}
-<font color="white"><a href="{{url_for('get_category',page=get_cat_prod.next_num)}}" class="btn btn-outline-light btn-sm mt-3">Next</font></a>
+<font color="white"><a href="{{url_for('get_brand',page=get_cat_prod.next_num)}}" class="btn btn-outline-light btn-sm mt-3">Next</font></a>
+
 {% endif %}
 </div>
 </div>
