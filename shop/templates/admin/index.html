@@ -101,6 +101,9 @@
                 <li class="nav-item ">
                     <a class="nav-link" href="{{url_for('admin')}}">Product</a>
                 </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="{{url_for('orders_admin')}}">Orders</a>
+                </li>
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -139,9 +142,10 @@
     <br> {% block content %} {% include '_messages.html'%}
     <div class="container">
     </div>
-    <div class="container">
+    <div class="container"style="background-color:#0f0f0f;border-radius: 30px;">
         <h5 align="center">
             <font size="5px">
+                <br>
                 <font color="white">Inventory Overview</h5>
         </font>
         <hr>
@@ -151,7 +155,10 @@
                     <font color="white">SerialNo.</th>
                 </font>
                 <th>
-                    <font color="white">Product</th>
+                    <font color="white">Product Name</th>
+                </font>
+                <th>
+                <font color="white">Product ID</th>
                 </font>
                 <th>
                     <font color="white">Price</th>
@@ -164,6 +171,9 @@
                 </font>
                 <th>
                     <font color="white">Image</th>
+                </font>
+                <th>
+                    <font color="white">Stock status</th>
                 </font>
                 <th>
                     <font color="white">Edit</th>
@@ -182,6 +192,9 @@
                         <font color="white">{{product.name}}</td>
                     </font>
                     <td>
+                        <font color="white">{{product.id}}</td>
+                    </font>
+                    <td>
                         <font color="white">{{product.price}}</td>
                     </font>
                     <td>
@@ -191,6 +204,17 @@
                         <font color="white">{{product.brand.name}}</td>
                     </font>
                     <td> <img src="{{url_for('static',filename='images/' + product.image_1)}}" alt="{{product.name}}" width="80" height="80"></td>
+
+                    {% if product.stock>0%}
+                    <td><font color="green">Available</font><font color="white">,Quantity:{{product.stock}}</font></td>
+                    {%else%}
+                    <td><font color="red">Out of stock</font>
+                    {% endif %}
+
+
+
+
+
                     <td> <a href="{{url_for('updateproduct', id=product.id)}}" class="btn btn-sm btn-dark">Edit </a> </td>
                     <td><button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal-{{product.id}}">
 Delete</button></td>

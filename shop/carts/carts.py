@@ -30,6 +30,8 @@ def AddCart():
         if product_id and quantity and color and request.method=="POST":
             DictItems = {product_id:{'name':product.name,'price':float(product.price),'discount':product.discount,'color':color,'quantity':quantity,'image':product.image_1, 'colors':product.colors,'colors':product.colors,'stock':product.stock}}
 
+          
+
             if 'Shoppingcart'in session:
                 print(session['Shoppingcart'])
 
@@ -88,37 +90,24 @@ def getCart():
     return render_template('products/carts.html',tax=tax,grandtotal=grandtotal,to_words=to_words,brands=brands,categories=categories)
 
 
-@app.route('/updatecart/<int:code>',methods=['POST'])
-
+@app.route('/updatecart/<int:code>', methods=['POST'])
 def updatecart(code):
-
-    if "Shoppingccart" not in session and len(session['Shoppingcart'])<=0:
-
-        return redirect(url_for('product_page'))
-
-    if request.method=='POST':
-        quantity=request.form.get('quantity')
-        color=request.form.get('color')
-
+    if 'Shoppingcart' not in session or len(session['Shoppingcart']) <= 0:
+        return redirect(url_for('home'))
+    if request.method =="POST":
+        quantity = request.form.get('quantity')
+        color = request.form.get('color')
         try:
-            session.modified=True
-
-            for key,item in session['Shoppingcart'].items():
-                if int(key)==code:
-                    item['color']=color
-                    item['quantity']=quantity
-                    flash("Your cart was updated",'success')
+            session.modified = True
+            for key , item in session['Shoppingcart'].items():
+                if int(key) == code:
+                    item['quantity'] = quantity
+                    item['color'] = color
+                    flash('Item is updated!','success')
                     return redirect(url_for('getCart'))
-
-               
-
-
         except Exception as e:
-
             print(e)
-
             return redirect(url_for('getCart'))
-
 
 
 

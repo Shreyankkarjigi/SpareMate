@@ -1,0 +1,93 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+<style>
+    .h1{
+        opacity: 0.9;
+    }
+th,td{
+    color:#e5e4e2;
+}
+</style>
+<div class="container mt-4">
+    {% include '_messages.html' %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1 class="text-center"><font color="white">Order Invoice</h1></font>
+    
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-md-12"style="background-color:#0f0f0f;border-radius: 20px;">
+            <br>
+           <h2><font color="white">SpareMate</font></h2>
+            <br>
+            
+           <font color="white">Inoice: {{orders.invoice}}</font>
+            <br>
+            <font color="white">Status: {{orders.status}}</font>
+            <br>
+            <font color="white"> Customer name: {{customer.name}}</font>
+            <br>
+            <font color="white"> Customer email: {{customer.email}}</font>
+            <br>
+            <font color="white"> Customer contact: {{customer.contact}}</font>
+            <br>
+            <br>
+        <table class="table table-sm">
+            <thead>
+                <th>Sr</th>
+                <th>Name</th>
+                <th>Color</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Discount</th>
+                <th>Subtotal</th>
+            </thead>
+            <tbody>
+                {% for key, product in orders.orders.items() %}
+                {% set discount =(product.discount/100) * product.price|float %}
+                <tr>
+                    <td>{{loop.index}}</td>
+                    <td>{{product.name}}</td>
+                    <form action="{{url_for('updatecart', code=key)}}" method="post">
+                    <td> 
+                        {{product.color|capitalize}}
+                    </td>
+                    <td>&#8377;{{"%.2f"|format(product.price)}}</td>
+                    <td> {{product.quantity}} </td>
+                    {% if product.discount  %}
+                    <td>{{product.discount}}%</td>
+                    {% else %}
+                    <td></td>
+                    {% endif %}
+                    {% set subtotal = product.quantity|int * product.price|float  %}
+                    <td>&#8377;{{"%.2f"|format(subtotal - discount|round(1,'floor')) }}</td>
+                    <td> 
+                  
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+  </div>
+  <br>
+  <br>
+  <form action="{{url_for('get_pdf',invoice=orders.invoice)}}" method="post">
+    <button type="submit" class="btn btn-outline-light btn-lg float-right"> Download Pdf</button>
+</form>
+<form action="" method="post">
+    <button type="submit" class="btn btn-outline-success btn-lg float-left">Checkout</button>
+</form> 
+</div>
+    
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<hr color="white" class="h1">
+{% endblock%}

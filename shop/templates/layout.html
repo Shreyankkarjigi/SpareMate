@@ -17,9 +17,13 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
+      .nav-item{
+        text-decoration: none;
+        list-style-type: none;
+      }
       .navbar-custom {
     color: #e5e4e2;
-    background-color:#313131;
+    background-color:#0f0f0f;
 }
       .ml3 {
   font-weight: 900;
@@ -31,7 +35,7 @@
       }
     
     .dropdown-item:hover {
-            background-color:grey;
+            background-color:#dddddd;
            
         }
      
@@ -156,30 +160,45 @@ transition: all 250ms ease-in-out 0s;
           <li class="nav-item">
             <a class="nav-link" href="/product_page"><font color="#e5e4e2">About Us</a></font>
           </li>
+
+
+
+
           <div class="ct">
             <li class="nav-item">
               <a href="{{url_for('getCart')}}" class="nav-link"><font color="#e5e4e2" style="font-size:15px;padding-right:9px;" class="fa fa-shopping-cart" tabindex="-1">({{session['Shoppingcart']|length }}) </a></font>
       </li>
       </ul>
-     
-      <ul class="nav navbar-nav ml-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="{{url_for('customer_register')}}"><font color="#e5e4e2">Signup</a></li></font>
+      <ul class="nav navbar-nav ml-auto"></ul>
+      {% if current_user.is_authenticated %}
+             <li class="nav-item">
+             <font color="#e5e4e2">Welcome {{current_user.name}}</a></font>
+            </li>
+   
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('customer_logout')}}"> <font color="#c72c41">Logout</a></font>
         </li>
-
-        <ul class="nav navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="{{url_for('customer_register')}}"><font color="#e5e4e2">Login</a></li></font>
-          </li>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search for product" aria-label="Search">
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('customer_register')}}"><font color="#e5e4e2">Signup</a></font>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('customerLogin')}}"><font color="#e5e4e2">Login</a></font>
+        </li>
+        {% endif %}
+      </ul>
+      <form class="form-inline my-2 my-lg-0" action="{{url_for('result')}}">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
     </div>
+    
 </nav>
+
 {% block body %}
 <!--All page content fit here-->
 {% endblock %}
+
      <!--footer-->
      <footer id="footer" class="footer-1">
         <div class="main-footer widgets-dark typo-light">

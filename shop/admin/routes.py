@@ -1,10 +1,11 @@
 from flask import render_template,session,request,redirect,url_for,flash
-from shop import app , db ,brcypt
+from shop import app , db ,brcypt,search
 from .forms import RegistrationForm,LoginForm,ContactForm,SellForm
 from .models import User,Contact,Sell
 import os
 import smtplib
 from shop.products.models import Addproduct,Brand,Category
+from shop.customers.models import CustomerOrder
 from datetime import date
 from datetime import datetime
 from datetime import timedelta
@@ -13,9 +14,23 @@ from flask_login import LoginManager, login_required, login_user, logout_user
 
 
 
+
+@app.route('/adminorders')
+
+def orders_admin():
+    products=Addproduct.query.all()
+    orders=CustomerOrder.query.order_by(CustomerOrder.id).all()
+
+    return render_template('admin/order_admin.html',title="Orders page",orders=orders, products=products)
+
+
 #session timeout handling
 
 # Define Flask-login configuration 
+
+
+
+
 
 @app.before_request
 def make_session_permanent():
@@ -143,7 +158,11 @@ def contact():
          return render_template('admin/contact.html',form=form,title='Contact Page')
 
 
+@app.route('/about')
 
+def about():
+
+    return render_template('main/about.html')
            
 
 

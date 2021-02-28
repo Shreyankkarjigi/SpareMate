@@ -8,6 +8,7 @@ from sqlalchemy.exc import IntegrityError
 
 
 
+
 @app.route("/product_page")
 def product_page():
     page=request.args.get('page',1,type=int)
@@ -15,6 +16,13 @@ def product_page():
     brands= Brand.query.join(Addproduct,(Brand.id==Addproduct.brand_id)).all()
     categories=Category.query.join(Addproduct,(Category.id==Addproduct.category_id)).all()
     return render_template('products/car.html',products=products,brands=brands,categories=categories)
+
+
+@app.route('/result')
+def result():
+    searchword = request.args.get('q')
+    products = Addproduct.query.msearch(searchword, fields=['name','description'] , limit=6)
+    return render_template('products/result.html',products=products,searchword=searchword)
     
 @app.route("/product/<int:id>")
 def single_page(id):
@@ -177,8 +185,10 @@ def addcat():
         return redirect(url_for('addproduct'))
     return render_template('products/addbrand.html')
     return render_template('products/addbrand.html', brands='brands')
-@app.route('/updatecategory/<int:id>',methods=['GET','POST'])
 
+
+
+@app.route('/updatecategory/<int:id>',methods=['GET','POST'])
 def updatecategory(id):
     if 'email' not in session:
         flash(f'Please login first','danger')
@@ -211,6 +221,7 @@ def deletecat(id):
         return redirect(url_for('category'))
     flash(f"The category {category.name} can't be  deleted from your database","warning")
     return redirect(url_for('admin'))
+
 @app.route('/Addproduct',methods=['GET','POST'])
 def addproduct():
     if 'email' not in session:
@@ -225,7 +236,9 @@ def addproduct():
         discount=form.discount.data
         stock=form.stock.data
         origin=form.origin.data
+        condition=form.condition.data
         description=form.description.data
+        install_service=form.install_service.data
         colors=form.colors.data
         brand=request.form.get('brand')
         category=request.form.get('category')
@@ -239,7 +252,7 @@ def addproduct():
             image_2=photos.save(request.files.get('image_2'),name=secrets.token_hex(10)+".")
             image_3=photos.save(request.files.get('image_3'),name=secrets.token_hex(10)+".")
             certificate=photos.save(request.files.get('certificate'),name=secrets.token_hex(10)+".")
-            addpro=Addproduct(name=name,price=price,discount=discount,stock=stock,origin=origin,description=description,colors=colors,brand_id=brand,category_id=category,image_1=image_1,image_2=image_2,image_3=image_3,certificate=certificate)
+            addpro=Addproduct(name=name,price=price,discount=discount,stock=stock,origin=origin,condition=condition,description=description,install_service= install_service,colors=colors,brand_id=brand,category_id=category,image_1=image_1,image_2=image_2,image_3=image_3,certificate=certificate)
             db.session.add(addpro)
             flash(f'The product {name} has been added to your database','success')
             db.session.commit()
@@ -252,6 +265,7 @@ def addproduct():
             return redirect(url_for('addproduct'))
 
     return render_template('products/addproduct.html',title="Add Product",form=form,brands=brands,categories=categories)
+
 @app.route('/updateproduct/<int:id>',methods=['GET','POST'])
 def updateproduct(id):
     if 'email' not in session:
@@ -269,7 +283,9 @@ def updateproduct(id):
         product.discount=form.discount.data
         product.stock=form.stock.data
         product.origin=form.origin.data
+        product.condition=form.condition.data
         product.description=form.description.data
+        product.install_service=form.install_service.data
         product.colors=form.colors.data
         product.brand_id=brand
         product.category_id=category
@@ -310,7 +326,9 @@ def updateproduct(id):
     form.discount.data=product.discount
     form.stock.data=product.stock
     form.origin.data=product.origin
+    form.condition.data=product.condition
     form.description.data=product.description
+    form.install_service.data=product.install_service
     form.colors.data=product.colors
     brand=request.form.get('brand')
     category=request.form.get('category')
