@@ -3,6 +3,8 @@ from shop import app,db,photos,brcypt
 from .forms import CustomerRegisterForm,CustomerLoginFrom
 from flask_login import login_required, current_user, logout_user, login_user
 from .models import Register,CustomerOrder
+from shop.products.models import Brand,Category,Addproduct
+from shop.products.forms import Addproducts
 import secrets
 import os 
 import json
@@ -18,6 +20,8 @@ import pdfkit
 
 @app.route('/customer/register', methods=['GET','POST'])
 def customer_register():
+    brands= Brand.query.join(Addproduct,(Brand.id==Addproduct.brand_id)).all()
+    categories=Category.query.join(Addproduct,(Category.id==Addproduct.category_id)).all()
     form = CustomerRegisterForm()
     if form.validate_on_submit():
         hash_password=brcypt.generate_password_hash(form.password.data).decode('utf-8')
@@ -26,11 +30,13 @@ def customer_register():
         flash(f'Welcome {form.name.data} Thank you for registering', 'success')
         db.session.commit()
         return redirect(url_for('customerLogin'))
-    return render_template('customer/register.html', form=form)
+    return render_template('customer/register.html', form=form,brands=brands,categories=categories)
 
 
 @app.route('/customer/login', methods=['GET','POST'])
 def customerLogin():
+    brands= Brand.query.join(Addproduct,(Brand.id==Addproduct.brand_id)).all()
+    categories=Category.query.join(Addproduct,(Category.id==Addproduct.category_id)).all()
     form = CustomerLoginFrom()
     if form.validate_on_submit():
         user = Register.query.filter_by(email=form.email.data).first()
@@ -43,7 +49,7 @@ def customerLogin():
         flash('Incorrect email and password','danger')
         return redirect(url_for('customerLogin'))
             
-    return render_template('customer/login.html', form=form)
+    return render_template('customer/login.html', form=form,brands=brands,categories=categories)
 
 
 @app.route('/customer/logout')

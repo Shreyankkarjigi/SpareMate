@@ -103,7 +103,7 @@ def updatecart(code):
                 if int(key) == code:
                     item['quantity'] = quantity
                     item['color'] = color
-                    flash('Item is updated!','success')
+                    flash('Item was updated','success')
                     return redirect(url_for('getCart'))
         except Exception as e:
             print(e)

@@ -35,6 +35,8 @@ th,td{
             <br>
             <font color="white"> Customer contact: {{customer.contact}}</font>
             <br>
+            <font color="white"> Customer Address: {{customer.address}}</font>
+            <br>
             <br>
         <table class="table table-sm">
             <thead>
@@ -71,10 +73,13 @@ th,td{
                 {% endfor %}
             </tbody>
         </table>
+      <h3 align="right"><font color="white"><font align="right">Grand Total: &#8377; {{grandTotal}}</font> </h3>
+      <br>
     </div>
   </div>
   <br>
   <br>
+
   <form action="{{url_for('get_pdf',invoice=orders.invoice)}}" method="post">
     <button type="submit" class="btn btn-outline-light btn-lg float-right"> Download Pdf</button>
 </form>
