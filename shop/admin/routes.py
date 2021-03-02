@@ -158,12 +158,7 @@ def contact():
          return render_template('admin/contact.html',form=form,title='Contact Page')
 
 
-@app.route('/about')
 
-def about():
-
-    return render_template('main/about.html')
-           
 
 
  

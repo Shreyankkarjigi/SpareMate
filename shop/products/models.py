@@ -34,7 +34,12 @@ class Category(db.Model):
     id=db.Column(db.Integer,primary_key=True)
     name=db.Column(db.String(30),nullable=True,unique=True)
 
-
+class Review(db.Model):
+    id = db.Column(db.Integer,primary_key=True)
+    rating=db.Column(db.Integer,nullable=False)
+    review=db.Column(db.Text,nullable=False)
+    category = db.Column(db.String(30),nullable=True)
+    product_id = db.Column(db.Integer,nullable=True)
 
 db.create_all()
     

@@ -1,12 +1,10 @@
 from flask import redirect ,render_template,url_for,flash,request,session,current_app
 from shop import db ,app,photos
-from .models import Brand,Category,Addproduct
+from .models import Brand,Category,Addproduct,Review
 from .forms import Addproducts
 import secrets,os
 from sqlalchemy.sql import exists
 from sqlalchemy.exc import IntegrityError
-
-
 
 
 @app.route("/product_page")
@@ -28,15 +26,18 @@ def result():
 def single_page(id):
 
     product=Addproduct.query.get_or_404(id)
+    search = product.category.name
+    reviews=Review.query.filter_by(category=search).order_by(Review.rating.desc()).all()
+    id_list = [r.product_id for r in reviews]
+    unique_id = list(set(id_list))
+    result = (
+    db.session.query(Addproduct)
+    .filter(Addproduct.id.in_(unique_id[0:5]))
+    .all()
+    )
     brands= Brand.query.join(Addproduct,(Brand.id==Addproduct.brand_id)).all()
     categories=Category.query.join(Addproduct,(Category.id==Addproduct.category_id)).all()
-
-    return render_template('products/single_page.html',product=product,brands=brands,categories=categories)
-
-
-
-
-
+    return render_template('products/single_page.html',product=product,brands=brands,categories=categories,results = result)
 
 @app.route("/home")
 
@@ -349,3 +350,22 @@ def deleteproduct(id):
         return redirect(url_for('admin'))
     flash(f'Can not delete the product','success')
     return redirect(url_for('admin'))
+
+@app.route('/reviews/<category>/<id>', methods=['GET', 'POST'])
+def addReviews(category,id):
+    if request.method=="POST":
+        rating= request.form.get("rating")
+        review= request.form["reviews"]
+        addreview=Review(rating=rating,review=review,category=category,product_id=id)
+        db.session.add(addreview)
+        flash(f'Product review was added','success')
+        db.session.commit()
+    return redirect(url_for('single_page', id=id))
+
+@app.route('/about')
+
+def about():
+    brands= Brand.query.join(Addproduct,(Brand.id==Addproduct.brand_id)).all()
+    categories=Category.query.join(Addproduct,(Category.id==Addproduct.category_id)).all()
+    return render_template('main/about.html',brands=brands,categories=categories)
+           
