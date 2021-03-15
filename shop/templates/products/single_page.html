@@ -6,21 +6,25 @@
 <style>
     .card{
     border: 1px solid #F5F5F5;
-    border-radius: 30px;
+    border-radius: 20px;
     height:100%;
     width:90%;
     background-color:#0f0f0f;
-    padding-left: 10px;
+    padding-left: 30px;
+    display: flex;
+    margin-left: 10px;
 
 
   }
   .card-body{
     color:#e5e4e2;
+    display: block;
+    text-align:justify;
   }
 
   .card-img-top{
-    border-radius: 30px;
-    height: 50%;
+    border-radius: 20px;
+    height: 60%;
     width:90%;
   }
     .status {
@@ -219,23 +223,21 @@
 
             <!--buttons-->
 
-
-
-
-
-
-
             <!--review section-->
             <form action="{{ url_for('addReviews',category = product.category.name, id=product.id) }}" method="POST"
             enctype="multipart/form-data" id="review-form">
-            <p>Rate this Product</p>
+
+
+            <p>Rate this Product out of 5</p>
+
+            
             <div class="form-group">
                 <div class="col-md-4">
                     <div class="input-group">
                         <span class="input-group-addon mr-3 mt-2"><i class="fa fa-heart"
                                 style="color: white"></i></span>
                         <select class="form-control" id="rate" name="rating">
-                            <option value="0">0</option>
+                            <option value="0"class="fa fa-star">0</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -245,11 +247,11 @@
                     </div>
                 </div>
                 <br>
-                <p> Any other feedback ?</p>
+                <p>Write product review</p>
                 <textarea form="review-form" name="reviews"></textarea>
             </div>
             <br>
-            <button type="submit" class="btn btn-outline-primary">Add Review</button>
+            <button type="submit" class="btn btn-light">Add Review</button>
         </form>
 
 
@@ -281,7 +283,9 @@
 <br>
 <div class="row">
     <h3 style="color: white;" class="text-center">Recommended Products in this Category based on ratings</h3>
+    <br>
     {% for p in results %}
+    <br>
     <div class="col-md-3 mt-3">
         <div class="card">
 

@@ -39,6 +39,13 @@ def AddCart():
                     print('This product is already in your cart')
                     flash('Product already exists in your cart','danger')
 
+                if product.stock<0:
+                    flash("Product is out of stock",'danger')
+                    return redirect(request.referrer)
+
+
+            
+
 
                 else:
                     session['Shoppingcart']=MergeDict(session['Shoppingcart'],DictItems)

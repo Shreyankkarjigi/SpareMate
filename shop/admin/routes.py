@@ -5,23 +5,41 @@ from .models import User,Contact,Sell
 import os
 import smtplib
 from shop.products.models import Addproduct,Brand,Category
-from shop.customers.models import CustomerOrder
+from shop.customers.models import CustomerOrder,reqpart,Battery,feedback
 from datetime import date
 from datetime import datetime
 from datetime import timedelta
 from flask_login import LoginManager, login_required, login_user, logout_user
 
-
-
-
-
 @app.route('/adminorders')
+
 
 def orders_admin():
     products=Addproduct.query.all()
     orders=CustomerOrder.query.order_by(CustomerOrder.id).all()
-
     return render_template('admin/order_admin.html',title="Orders page",orders=orders, products=products)
+
+@app.route('/parts_request')
+
+def parts_request():
+    req=reqpart.query.order_by(reqpart.id).all()
+    return render_template('admin/parts_request.html',title="partreq",req=req)
+
+
+@app.route('/feedbackuser')
+def feedback_user():
+    feed=feedback.query.order_by(feedback.id).all()
+    return render_template('admin/feed.html',title="feed",feed=feed)
+
+
+
+@app.route('/batt')
+def bat_request():
+    bt=Battery.query.order_by(Battery.id).all()
+    return render_template('admin/bat.html',title="batreq",bt=bt)
+
+
+
 
 
 #session timeout handling

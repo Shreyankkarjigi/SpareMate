@@ -17,6 +17,16 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
+      .custom-toggler .navbar-toggler-icon { 
+            background-image: url( 
+"data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E"); 
+        } 
+      .custom-toggler.navbar-toggler { 
+    border-color:#e5e4e2 
+}
+      .navbar-dark .navbar-toggler-icon {
+        color: white;
+      }
       .nav-item{
         text-decoration: none;
         list-style-type: none;
@@ -126,7 +136,7 @@ transition: all 250ms ease-in-out 0s;
 <!--navbar with search-->
 <nav class="navbar navbar-expand-lg navbar-custom">
     <a class="navbar-brand" href="\product_page"><font color="#e5e4e2">SpareMate</a></font>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler ml-auto custom-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
   
@@ -167,13 +177,16 @@ transition: all 250ms ease-in-out 0s;
               More services</font>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Battery exchange programme</a>
-              <a class="dropdown-item" href="#">Request a part</a>
-              <a class="dropdown-item" href="#">Installation Policy</a>
-              <a class="dropdown-item" href="#">Quality assurance at SpareMate</a>
-              <a class="dropdown-item" href="#">About stripe payment</a>
-              <a class="dropdown-item" href="#">How to spot a fake part</a>
-              <a class="dropdown-item" href="#">Feedback</a>
+            <a class="dropdown-item" href="{{url_for('bat_exchange')}}"> <font color="#e5e4e2" class="dropdown-text">Battery exchange program</a></font>
+            <a class="dropdown-item" href="{{url_for('install_services')}}"> <font color="#e5e4e2" class="dropdown-text">Request installation for part</a></font>
+             <a class="dropdown-item" href="{{url_for('req_part')}}"> <font color="#e5e4e2" class="dropdown-text">Request a part</a></font>
+                  <a class="dropdown-item" href="{{url_for('install_policy')}}"><font color="#e5e4e2" class="dropdown-text">Installation Policy</a></font>
+            <a class="dropdown-item" href="{{url_for('quality_assurance')}}"> <font color="#e5e4e2" class="dropdown-text">Quality assurance at SpareMate</a></font>
+       
+                
+                 <a class="dropdown-item" href="{{url_for('feed_back')}}"> <font color="#e5e4e2" class="dropdown-text">Feedback</a></font>
+                 <a class="dropdown-item" href="{{url_for('privacy_policy')}}"> <font color="#e5e4e2" class="dropdown-text">Privacy Policy</a></font>
+
             </div>
           </li>
 
@@ -184,10 +197,14 @@ transition: all 250ms ease-in-out 0s;
       </li>
       </ul>
       <ul class="nav navbar-nav ml-auto"></ul>
+      <li class="nav-item">
+        <a class="nav-link" href="{{url_for('road_assistance')}}"> <font color="#c72c41">Roadside Assistance</a></font>
+      </li>
       {% if current_user.is_authenticated %}
              <li class="nav-item">
              <font color="#e5e4e2">Welcome {{current_user.name}}</a></font>
             </li>
+        
    
         <li class="nav-item">
           <a class="nav-link" href="{{url_for('customer_logout')}}"> <font color="#c72c41">Logout</a></font>
@@ -208,7 +225,6 @@ transition: all 250ms ease-in-out 0s;
     </div>
     
 </nav>
-
 {% block body %}
 <!--All page content fit here-->
 {% endblock %}

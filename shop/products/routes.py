@@ -1,5 +1,6 @@
 from flask import redirect ,render_template,url_for,flash,request,session,current_app
 from shop import db ,app,photos
+from flask_login import login_required, current_user, logout_user, login_user
 from .models import Brand,Category,Addproduct,Review
 from .forms import Addproducts
 import secrets,os
@@ -19,7 +20,10 @@ def product_page():
 @app.route('/result')
 def result():
     searchword = request.args.get('q')
+
     products = Addproduct.query.msearch(searchword, fields=['name','description'] , limit=6)
+    
+
     return render_template('products/result.html',products=products,searchword=searchword)
     
 @app.route("/product/<int:id>")
@@ -47,7 +51,6 @@ def home():
 
 
 @app.route('/brand/<int:id>')
-
 def get_brand(id):
     get_b=Brand.query.filter_by(id=id).first_or_404()
     page=request.args.get('page',1,type=int)
@@ -118,7 +121,7 @@ def updatebrand(id):
     brand=request.form.get('brand')
     if request.method=="POST":
         updatebrand.name=brand
-        if len(updatebrand.name)<0:
+        if len(updatebrand.name)>0:
             flash(f'Your brand has been updated','success')
             db.session.commit()
             return redirect(url_for('brands'))
@@ -200,7 +203,7 @@ def updatecategory(id):
         
         updatecategory.name=category
 
-        if len(updatecategory.name)<0:
+        if len(updatecategory.name)>0:
             flash(f'Your category has been updated','success')
             db.session.commit()
             return redirect(url_for('category'))
@@ -262,7 +265,7 @@ def addproduct():
 
         except Exception:
 
-            flash('Please attach all images','danger')
+            flash(f'Please attach all images','danger')
             return redirect(url_for('addproduct'))
 
     return render_template('products/addproduct.html',title="Add Product",form=form,brands=brands,categories=categories)
@@ -352,15 +355,55 @@ def deleteproduct(id):
     return redirect(url_for('admin'))
 
 @app.route('/reviews/<category>/<id>', methods=['GET', 'POST'])
+@login_required
 def addReviews(category,id):
     if request.method=="POST":
         rating= request.form.get("rating")
         review= request.form["reviews"]
-        addreview=Review(rating=rating,review=review,category=category,product_id=id)
-        db.session.add(addreview)
-        flash(f'Product review was added','success')
-        db.session.commit()
+        user_id=current_user.id
+    
+        if len(request.form["reviews"])>0 and current_user.is_authenticated:
+            addreview=Review(rating=rating,review=review,category=category,product_id=id,user_id=user_id)
+            db.session.add(addreview)
+            flash(f'Product review was added','success')
+            db.session.commit()
+
+        else:
+            flash("Review cannot be blank",'danger')
+            return redirect(url_for('single_page', id=id))
+
+        
     return redirect(url_for('single_page', id=id))
+
+
+
+@app.route('/adminreviews')
+def reviews_admin():
+
+   
+    reviews=Review.query.order_by(Review.id).all()
+    return render_template('admin/review_admin.html',title="adminreviews",reviews=reviews)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @app.route('/about')
 
@@ -368,4 +411,11 @@ def about():
     brands= Brand.query.join(Addproduct,(Brand.id==Addproduct.brand_id)).all()
     categories=Category.query.join(Addproduct,(Category.id==Addproduct.category_id)).all()
     return render_template('main/about.html',brands=brands,categories=categories)
+           
+@app.route('/aboutstripe')
+
+def aboutstripe():
+    brands= Brand.query.join(Addproduct,(Brand.id==Addproduct.brand_id)).all()
+    categories=Category.query.join(Addproduct,(Category.id==Addproduct.category_id)).all()
+    return render_template('main/stripeabout.html',brands=brands,categories=categories)
            

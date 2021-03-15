@@ -13,7 +13,7 @@ basedir=os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__)
 app.secret_key = 'eeeopopdopeppokakopkoapkaopap'
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///localhost254655999455.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///localhost25466t55d999654565.db'
 db = SQLAlchemy(app)
 app.config['UPLOADED_PHOTOS_DEST']=os.path.join(basedir,'static/images')
 photos = UploadSet('photos', IMAGES)
@@ -25,7 +25,6 @@ login_manager.init_app(app)
 login_manager.login_view='customerLogin'
 login_manager.needs_refresh_message_category='danger'
 login_manager.login_message = u"Please login first"
-
 db = SQLAlchemy(app)
 brcypt=Bcrypt(app)
 

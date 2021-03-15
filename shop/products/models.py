@@ -40,6 +40,7 @@ class Review(db.Model):
     review=db.Column(db.Text,nullable=False)
     category = db.Column(db.String(30),nullable=True)
     product_id = db.Column(db.Integer,nullable=True)
+    user_id=db.Column(db.Integer,nullable=True)
 
 db.create_all()
     
