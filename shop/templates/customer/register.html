@@ -5,12 +5,13 @@
 <style>
      body{
         background-color:black;
-        background-image:url('/static/pic10.png');
+
         background-repeat: no-repeat;
         background-size: 20%;
         margin-left: auto;
         margin-right: auto;
         background-position: center;
+        font-family:Georgia, 'Times New Roman', Times, serif;
       
 
     }
@@ -62,11 +63,16 @@
     
             <div class="col-md-2"></div>
         </div>
+        <br>
+        <br>
         <div class="sbtn">
-            <font color="#e5e4e2"> {{ form.submit(class="btn btn-dark btn-lg") }}</font>
+            <font color="#e5e4e2">{{ form.submit(class="btn btn-dark btn-lg") }}</font> &nbsp;<a href="{{url_for('customerLogin')}}"class="btn btn-dark btn-lg">Login</a>
+            <br>
+            <br>
+ 
            </div> 
     </form>
     <br>
 </div>
-
+<hr color="white" class="hr1">
 {% endblock%}

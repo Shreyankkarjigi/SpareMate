@@ -1,0 +1,157 @@
+{% extends 'layout.html'%}
+{% include '_messages.html'%}
+{%block body %}
+<html lang="en">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<style>
+
+
+
+    .hh1{
+        color:#e5e4e2;
+      
+    }
+    body{
+        background-color:#e3e3e3;
+        font-family: sans-serif;
+        font-size: 1vw;
+    }
+    *{
+    margin: 0;
+    padding: 0;
+    font-family: "Open Sans",sans-serif;
+    box-sizing: border-box;
+}
+.about-section{
+    background:  url('/static/pic25.jpg') no-repeat;
+    background-size: 70%;
+    background-color: black;
+    overflow: hidden;
+    padding: 100px 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.inner-container{
+    width: 55%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color:black;
+    padding: 100px;
+    border-radius: 25px;
+}
+
+.inner-container h1{
+    margin-bottom: 10px;
+    font-size: 30px;
+    font-weight: 900;
+}
+
+.text{
+    font-size: 1vw;
+    color: #e5e4e2;
+    line-height: 30px;
+    text-align: justify;
+    margin-bottom: 40px;
+}
+.skills{
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    font-size: 1vw;
+}
+
+@media only screen and (max-width: 600px) {
+    .text{
+      font-size: 3vw;
+   
+  }
+  .skills{
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    font-size: 3vw;
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width:1200px){
+    .inner-container{
+        padding: 80px;
+    }
+}
+
+@media screen and (max-width:1000px){
+    .about-section{
+        background-size: 100%;
+        padding: 100px 40px;
+    }
+    .inner-container{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:600px){
+    .about-section{
+        padding: 0;
+    }
+    .inner-container{
+        padding: 60px;
+    }
+}
+</style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="about-section">
+        <div class="inner-container">
+            <h1 class="hh1">About SpareMate</h1>
+            <p class="text">
+               <font color="black"><b>What is SpareMate ?</font><br></b>
+               Sparemate is an ecommerce system that aims to make buying and selling of vehicular spare parts easier for indian markets.
+               We provide high quality and highly affordable parts right to your doorstep. On top of that we work with local dealers to bring their business online through our platform.<br>
+               <font color="black"><b>Why choose SpareMate?</font><br></b>
+               If you are one of those who need high quality parts but are low on budget,then Sparemate is for you.
+               We provide only the highest quality products that are tested prior shipping to you.
+            </p>
+            <div class="skills">
+                <span>GitHub:<a href="https://github.com/Shreyankkarjigi/SpareMate">https://github.com/Shreyankkarjigi/SpareMate</span></a>        
+                
+        </div>
+        <br>
+        <br>
+       
+</body>
+</html>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+{% endblock %}

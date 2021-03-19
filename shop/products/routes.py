@@ -11,7 +11,7 @@ from sqlalchemy.exc import IntegrityError
 @app.route("/product_page")
 def product_page():
     page=request.args.get('page',1,type=int)
-    products=Addproduct.query.order_by(Addproduct.id.desc()).paginate(page=page,per_page=12)
+    products=Addproduct.query.order_by(Addproduct.id.desc()).paginate(page=page,per_page=8)
     brands= Brand.query.join(Addproduct,(Brand.id==Addproduct.brand_id)).all()
     categories=Category.query.join(Addproduct,(Category.id==Addproduct.category_id)).all()
     return render_template('products/car.html',products=products,brands=brands,categories=categories)
@@ -21,11 +21,13 @@ def product_page():
 def result():
     searchword = request.args.get('q')
 
-    products = Addproduct.query.msearch(searchword, fields=['name','description'] , limit=6)
+    products = Addproduct.query.msearch(searchword, fields=['name','description'] , limit=8)
     
 
     return render_template('products/result.html',products=products,searchword=searchword)
     
+
+
 @app.route("/product/<int:id>")
 def single_page(id):
 
@@ -43,18 +45,14 @@ def single_page(id):
     categories=Category.query.join(Addproduct,(Category.id==Addproduct.category_id)).all()
     return render_template('products/single_page.html',product=product,brands=brands,categories=categories,results = result)
 
-@app.route("/home")
 
-def home():
-   
-    return render_template('main/index.html')
 
 
 @app.route('/brand/<int:id>')
 def get_brand(id):
     get_b=Brand.query.filter_by(id=id).first_or_404()
     page=request.args.get('page',1,type=int)
-    brand=Addproduct.query.filter_by(brand=get_b).paginate(page=page,per_page=12)
+    brand=Addproduct.query.filter_by(brand=get_b).paginate(page=page,per_page=8)
     brands= Brand.query.join(Addproduct,(Brand.id==Addproduct.brand_id)).all()
     categories=Category.query.join(Addproduct,(Category.id==Addproduct.category_id)).all()
     return render_template('products/car.html',brand=brand,brands=brands,categories=categories,get_b=get_b)
@@ -65,7 +63,7 @@ def get_brand(id):
 def get_category(id):
     page=request.args.get('page',1,type=int)
     get_cat=Category.query.filter_by(id=id).first_or_404()
-    get_cat_prod=Addproduct.query.filter_by(category=get_cat).paginate(page=page,per_page=12)
+    get_cat_prod=Addproduct.query.filter_by(category=get_cat).paginate(page=page,per_page=6)
     brands= Brand.query.join(Addproduct,(Brand.id==Addproduct.brand_id)).all()
     categories=Category.query.join(Addproduct,(Category.id==Addproduct.category_id)).all()
     return render_template('products/car.html',get_cat_prod=get_cat_prod, categories=categories,brands=brands,get_cat=get_cat)
@@ -410,12 +408,12 @@ def reviews_admin():
 def about():
     brands= Brand.query.join(Addproduct,(Brand.id==Addproduct.brand_id)).all()
     categories=Category.query.join(Addproduct,(Category.id==Addproduct.category_id)).all()
-    return render_template('main/about.html',brands=brands,categories=categories)
+    return render_template('customer/about.html',brands=brands,categories=categories)
            
 @app.route('/aboutstripe')
 
 def aboutstripe():
     brands= Brand.query.join(Addproduct,(Brand.id==Addproduct.brand_id)).all()
     categories=Category.query.join(Addproduct,(Category.id==Addproduct.category_id)).all()
-    return render_template('main/stripeabout.html',brands=brands,categories=categories)
+    return render_template('customer/stripeabout.html',brands=brands,categories=categories)
            

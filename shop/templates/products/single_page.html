@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 {% block body %}
-{% include '_messages.html'%}
+
 <br>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
@@ -111,19 +111,7 @@
             width: 100%;
         }
 
-        img:hover {
-            transform: scale(0.7);
-            -webkit-transform: scale(0.7);
-            /* Safari and Chrome */
-            -moz-transform: scale(0.7);
-            /* Firefox */
-            -ms-transform: scale(0.7);
-            /* IE 9 */
-            -o-transform: scale(0.7);
-            /* Opera */
-            transform: scale(0.7);
-
-        }
+      
 
         .row_image {
             display: none;
@@ -152,7 +140,7 @@
         margin-right: auto;
     }
 </style>
-<div class="container mt-5" style="background-color:#0f0f0f;border-radius: 30px;">
+<div class="container mt-5">
     <div class="row">
 
         <div class="col-md-6" id="b_image">
@@ -162,6 +150,7 @@
             </div>
         </div>
         <div class="col-md-6">
+            {% include '_messages.html'%}
             <br>
             <br>
             <h1 class="product_name"><b>{{product.name}}</h1></b>
@@ -253,10 +242,6 @@
             <br>
             <button type="submit" class="btn btn-light">Add Review</button>
         </form>
-
-
-
-
         </div>
     </div>
     <div class="row_image">

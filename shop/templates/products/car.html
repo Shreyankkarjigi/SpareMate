@@ -2,15 +2,19 @@
 {% block body %}
 <head>
 <style>
-  
+  body{
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    
+  }
+.search-media{
+  display: none;
+}
   .center2{
     font-size: x-large;
     text-align: center;
     color: #e5e4e2 ;
+    font-family:Georgia, 'Times New Roman', Times, serif;
   }
-
-
-
 
     .hr1{
     opacity:  0.9;
@@ -31,9 +35,10 @@
   width: 100%;
   height:100%;
   padding-top:120px;
+  font-family:Georgia, 'Times New Roman', Times, serif;
   }
   .hero{
-    font-size:210px;
+    font-size:15vw;
     margin-top: 60px;
     font-family: Corbert Condensed Italic;
     color:#e5e4e2 ;
@@ -55,35 +60,24 @@
 }
 .content .images{
   height: 70%;
-  width: 100%;
+  max-width: 100%
+ 
 }
 .images img{
   height: 100%;
-  width: 100%;
+  max-width: 100%
+
 }
   .float-left btn btn-sm btn-primary{
     border-radius: 2px;
   }
-  .searchbar{
-    float: right;
-  }
-
- .filterhead{
-   text-align:left;
-   padding-left: 10px;
-   font-size: large;
-   position: -webkit-sticky; /* Safari */
-  position: sticky;
-  top: auto;
-
- }
-  
+ 
   .card{
     border: 1px solid #F5F5F5;
     border-radius: 30px;
     height:100%;
     width:100%;
-    background-color:#0f0f0f;
+    background-color:black;
 
 
   }
@@ -94,10 +88,53 @@
   .card-img-top{
     border-radius: 30px;
     height: 50%;
-    width:90%;
+    max-width: 100%
+  
   }
+  .center{
+        text-align: center;
+        padding-top: 3vw;
+        color:#e5e4e2;
+        position: -webkit-sticky; /* Safari */
+  position: sticky;
+  font-size: 3vw;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+     
+}
+
+
+
+
+
+
+
+
 
   @media only screen and (max-width: 600px) {
+
+
+body{
+  font-family:Georgia, 'Times New Roman', Times, serif;
+}
+    .center{
+
+      font-size: 5vw;
+      font-family:Georgia, 'Times New Roman', Times, serif;
+    }
+    .center2{
+
+font-size: 3vw;
+font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
+
+
+
+
+
+
+
+
     .card{
     border: 2px solid #F5F5F5;
     border-radius: 40px;
@@ -105,10 +142,26 @@
     width:70%;
     background-color:black;
     display: flex;
-  margin-left: auto;
-  margin-right: auto;
+    margin-left: auto;
+    margin-right: auto;
 
 
+  }
+  .search-media{
+    display:table;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    
+  }
+
+  .hero{
+
+  
+    font-size: 20vw;
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
   }
   .card-body{
     color:#e5e4e2;
@@ -117,8 +170,8 @@
   .card-img-top{
     border-radius: 40px;
     height: 50%;
-    width:90%;
     display: flex;
+    max-width: 100%
   }
 
   .welcome{
@@ -126,22 +179,13 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: auto;
-  width: 100%;
+  max-width: 100%;
   height:100%;
   padding-top:120px;
   display: flex;
 
   }
-  .hero{
-    font-size:100px;
-    margin-top: 60px;
-    font-family: Corbert Condensed Italic;
-    color:#e5e4e2 ;
-    text-align: center;
-  margin-left: auto;
-  margin-right: auto;
- 
-  }
+  
 
   }
 
@@ -157,60 +201,58 @@
   
 }
 
-  .heroImage {
-	background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.9)), url("/static/11.png");
-	background-position: center;
-	background-repeat: no-repeat;
-	position: relative;
-  width: 100%;
-  padding-top: 150px;
-}
-.heroContents {
-	padding-bottom: 35px;
-	text-align: center;
-	color: #e5e4e2;
-  width: 100%;
-}
-
 a:link {
     text-decoration: none;
     color:white;
 }
 
-/* rest of stuff */
-  .centered {
-  position: absolute;
-  top: 35%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color:#e5e4e2;
-}
-
- 
-  
-  
   a{
     color:#4d375d
   }
-  
-    .heading{
     
-       
-        font-size: 120px;
-        color: #f6f6f6
-        
-      
-        
-    }
-    .center{
-        text-align: center;
-        padding-top: 50px;
-        color:#e5e4e2;
-        position: -webkit-sticky; /* Safari */
-  position: sticky;
+    
 
-     
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </style>
 </head>
 <body>
@@ -218,10 +260,13 @@ a:link {
 <br>
 <br>
 <!--header-->
+
 <div class="welcome">
+  
 <h1 align="center" class="hero"> SpareMate</font></h1>
-<h3 align="center"><font color="#e5e4e2">We make buying and selling of spare parts much easier</h3></font>
+
 </div>
+
 <br>
 <br>
 <br>
@@ -232,9 +277,16 @@ a:link {
 
 <hr color="white" class="hr1">  
 {% include '_messages.html'%}
-<h2 class="center"><font size="15px">Browse products</h2></font>
+<h2 class="center">Browse products</h2></font>
 <br>
 <h5 class="center2">Use search bar to find products</h5></font>
+<div class="search-media">
+
+  <form class="form-inline my-2 my-lg-0" action="{{url_for('result')}}">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+</div>
 <br>
 <br>
 <!--cards-->

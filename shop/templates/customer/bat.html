@@ -2,6 +2,10 @@
 {% block body %}
 <head>
 <style>
+  .form_text{
+  text-align: center;
+  font-size: 2vw;
+  }
   .qoute1{
   font-size:40px;
   color:#91091e;
@@ -19,7 +23,8 @@
 margin-left: auto;
 
     margin-right:auto;
-    margin-top: 150px;
+    margin-top: 120px;
+    max-width: 80%;
     
     
   }
@@ -69,9 +74,10 @@ margin-left: auto;
   .hero{
     font-size:100px;
     margin-top: 60px;
-    font-family: Corbert Condensed Italic;
+    font-family:Georgia, 'Times New Roman', Times, serif;
     color:#e5e4e2 ;
     text-align: center;
+    margin-top: 120px;
  
   }
   .main{
@@ -147,6 +153,7 @@ margin-left: auto;
   
   .qoute{
   display: none;
+  font-size: 1vw;
   }
  
   .card-body{
@@ -161,20 +168,35 @@ margin-left: auto;
   }
 
   .welcome{
-  background-image: url('/static/17.png');
+  background-image: url('/static/11.png');
   background-repeat: no-repeat;
   background-position: center;
-  background-size: auto;
-  width: 100%;
+  background-size: contain;
+  max-width: 100%;
   height:100%;
-  padding-top:120px;
-  display: flex;
+  margin-top:0px;
+
 
   }
-  .hero{
-    font-size:100px;
-    margin-top: 80px;
-    font-family: Corbert Condensed Italic;
+  
+
+
+  @media only screen and (max-width: 600px) {
+
+
+.form_text{
+  text-align: center;
+  font-size: 4vw;
+
+}
+
+
+
+
+.hero{
+    font-size:8vw;
+    margin-top: 120px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
     color:#e5e4e2 ;
     text-align: center;
  
@@ -196,7 +218,7 @@ margin-left: auto;
 
 
 .heroContents {
-	padding-bottom: 35px;
+	padding-bottom: 45px;
 	text-align: center;
 	color: #e5e4e2;
   width: 100%;
@@ -241,33 +263,28 @@ a:link {
 
      
 }
+  }
 </style>
 </head>
 <body>
-<br>
-<br>
-<br>
+
 <!--header-->
+
 <div class="welcome">
 <h1 align="center" class="hero"> SpareMate Battery Exchange</font></h1>
 <h3 align="center"class="qoute"><font color="#e5e4e2">Exchange your old battery for upto 10% off on new one</h3></font>
 </div>
-<br>
-<br>
-<br>
-<div class="how">
 
-<br>
-<br>
+<div class="how">
 <ul color="red">
   <h3 class="qoute1"><b>How to tell when it's time to change your vehicle battery</h3></font></b>
   <br>
-  <li>1.Either the engine takes time to start or doesn’t even start. The battery is not able to produce ample power to start the engine.</li>
-  <li>2.While turning the ignition the dash light either flicker or are dim than usual.</li>
-  <li>3.The engine suddenly turns off while operating the power windows or the windows operate at a much slower pace than normal.</li>
-  <li>4.Another sign you may notice is dim dash lights when the engine is idle and as you rev the engine they get brighter.</li>
-  <li>5.A lot of corrosion or oxidation on the battery terminals is also a major sign to make out that the car battery is getting low.</li>
-  <li>6.Modern cars come equip with a battery warning light which lights up when the battery is low.</li>
+  <li>Either the engine takes time to start or doesn’t even start. The battery is not able to produce ample power to start the engine.</li>
+  <li>While turning the ignition the dash light either flicker or are dim than usual.</li>
+  <li>The engine suddenly turns off while operating the power windows or the windows operate at a much slower pace than normal.</li>
+  <li>Another sign you may notice is dim dash lights when the engine is idle and as you rev the engine they get brighter.</li>
+  <li>A lot of corrosion or oxidation on the battery terminals is also a major sign to make out that the car battery is getting low.</li>
+  <li>Modern cars come equip with a battery warning light which lights up when the battery is low.</li>
 </ul>
 </div>
 <br>
@@ -277,7 +294,7 @@ a:link {
 <br>
 <br>
 <!--header ends-->
-<h3 class="text-center"><font color="white">Please fill the given form,our representative will contact you shortly</h3></font>
+<h3 class="form_text"><font color="white">Please fill the given form,our representative will contact you shortly</font>
 <h4 class="text-center"><font color="white"></h4></font>
 <br>
 <br>

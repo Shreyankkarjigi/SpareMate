@@ -1,11 +1,38 @@
 {% extends "layout.html" %}
 {% block body %}
-{% include '_messages.html' %}
+
 <br>
 <br>
 <br>
 
 <style>
+body{
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+.sbtn{
+    display: table;
+    margin-top: auto;
+    margin-right: auto;
+}
+
+.form_batt{
+        display: table;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+.text-center{
+    color: white;
+    font-size: 2vw;
+}
+@media screen and (max-width:600px){
+    .text-center{
+    color: white;
+    font-size: 5vw;
+
+
+}
+}
     .logo-signup1{
   width:110px;
   display: block;
@@ -36,47 +63,61 @@
         background-color:black;
         background-image:  url('/static/pic5.png');
         background-repeat: no-repeat;
-        background-size: cover;
+        background-size: contain;
       
       
 
     }
+
+    @media screen and (max-width:600px){
+    body{
+        background-color:black;
+        background-image:  url('/static/pic5.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+
+
+}
+.form_batt{
+    margin-top: 390px;
+}
+
+
     .logi{
         margin-left: auto;
         margin-right: auto;
     }
     </style> 
-    
-<div class="container"style="border-radius:30px; width:20%;>
-    <div class="row">
-        <div class="col">
-            <div class="col">
-                <h1 class="text-center"> <font color="#e5e4e2"><font size="20px">Login</h1></font>
-
-                {% from "_formhelpers.html" import render_field %}
-              
+    <div class="form_batt">
+    <div class="col-md-3"></div>
+    <h1 class="text-center">Login</h1>
+    {% from "_formhelpers.html" import render_field %}
+                <font color="#e5e4e2">{% include '_messages.html' %}</font>
                 <form method=post>
                     {{form.csrf_token}}
                 <div>
-                    <font color="#e5e4e2"> {{ render_field(form.email, class="form-control",placeholder="Email") }}</font>
-                        <font color="#e5e4e2"> {{ render_field(form.password, class="form-control",placeholder="Password") }}</font>
+        
+                        <font color="#e5e4e2"> {{ render_field(form.email, class="form-control",placeholder="Email") }}</font>
+                        <font color="#e5e4e2"> {{ render_field(form.password, class="form-control",placeholder="Password",id="myInput") }}</font>
+                        <input type="checkbox" onclick="myFunction()"><font color="white"> Show Password</font>
+                        <br>
+                        <br>
+                        
+                        <div class="sbtn">
+            
+                    
+                            
+                          
+                           <input type="submit" value="Login" class="btn btn-light btn-lg">&nbsp;&nbsp&nbsp&nbsp<a href="{{url_for('customer_register')}}"class="btn btn-dark btn-lg">Signup</a>
+
+
+
+    
+                         </div> 
                 </div>
-                <a href="">Forgot password?</a>
-                <br>
-                <br>
-                <div class="logbtn">
-                <input type="submit" value="Login" class="btn btn-light btn-lg">
-                <br>
-                <br>
-         
-                <br>
-               
-                </div>
-                </form>
-            </div>
-        </div>
       <div class="col-md-3"></div>
     </div>
+</div>
 </div>
 <br>
 <br>
@@ -87,23 +128,15 @@
 <br>
 <br>
 <br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+<script>
+    function myFunction() {
+  var x = document.getElementById("myInput");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>
+<hr color="white" class="hr1">
 {% endblock%}
